@@ -1,5 +1,5 @@
 # Graph-pMHC: Independent Analysis and Extensions
-A fork of the original Graph-pMHC model, used to evaluate the model and explore extensions to its representation of peptide-MHC Class II interactions.
+An extension of the Graph-pMHC GNN, used to evaluate the model and explore extensions to its representation of peptide-MHC Class II interactions.
 
 Initial work focused on evaluating prediction quality beyond aggregate AP by granularizing performance across allele classes and allotypes. Decreases in accuracy are structured rather than random, concentrated in specific DQ allotypes, independent of training coverage, and associated with structural isolation. 
 
