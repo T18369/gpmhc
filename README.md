@@ -12,7 +12,8 @@ Ongoing work explores whether additional biochemical/structural information can 
 The aim is to develop a richer representation of the pMHC interface while retaining the strengths of the original model. Longer-term, this provides a foundation for extending pMHC modeling toward integrating TCR recognition
 
 
-
+**Test/Training Dataset:** The `Presentation_df_w_preds.csv` file is available within the original Graph-pMHC Zenodo dataset. The file is ~1.4 GB.
+https://zenodo.org/records/8429039
 
 
 
