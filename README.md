@@ -1,3 +1,24 @@
+# Graph-pMHC: Independent Analysis and Extensions
+A fork of the original Graph-pMHC model, used to evaluate the model and explore extensions to its representation of peptide-MHC Class II interactions.
+
+Initial work focused on evaluating prediction quality beyond aggregate AP by granularizing performance across allele classes and allotypes. Decreases in accuracy are structured rather than random, concentrated in specific DQ allotypes, independent of training coverage, and associated with structural isolation. 
+
+Ongoing work explores whether additional biochemical/structural information can complement the original graph representation. Preliminary hypotheses included expanding adjacency matrices cutoff of 4angstroms (hard contacts) to 8angstroms (hard+soft contacts; second-shell interactions) to extract continuous distances maps from AlphaFold2-Multimer structures which are otherwise discarded in the default binary classification, motivating a distance-weighted edge representation (i.e. radial basis function-esque) as a principled improvement. ***requires generating 115 AF2 structures to reproduce original workflow, on hold pending molecular dynamics pilot results (outlined below)
+
+
+
+
+
+The aim is to develop a richer representation of the pMHC interface while retaining the strengths of the original model. Longer-term, this provides a foundation for extending pMHC modeling toward integrating TCR recognition
+
+
+
+
+
+
+
+
+# Original Graph-pMHC Documentation
 This is the repo for performing inference using the baseline graph-pmhc model introduced in https://www.biorxiv.org/content/10.1101/2023.01.19.524779v1
 
 # Inference Instructions
