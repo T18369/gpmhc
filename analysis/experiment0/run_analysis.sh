@@ -5,7 +5,7 @@ mkdir -p results/figures
 mkdir -p results/tables
 
 echo "Running gpmhc qc analysis"
-python3 02_ap_by_allotype_test_split.py
+python3 02b_ap_by_allotype_test_split.py
 python3 02b_ap_by_mhc_class_test.py
 python3 02c_netmhcpan_ap_by_allotype_test_split.py
 python3 02d_compare_graphpmhc_vs_netmhcpan_ap.py
