@@ -1,7 +1,7 @@
 ## NetMHCIIpan DQ Training Augmentation ##
-To address the lower performance observed for HLA-DQ, a targeted augmentation of the training set was
-performed using DQ peptides from the NetMHCIIpan 4.2 training data. The objective is to enhance
-coverage by increasing the number of sequence-diversified training examples
+To address the lower performance observed for HLA-DQ, a targeted augmentation of the training set was performed using DQ peptides from the NetMHCIIpan 4.2 training data. The objective is to enhance
+coverage by increasing the number of sequence-diversified training examples.
+Source EL (not BA) files and allele list from https://services.healthtech.dtu.dk/services/NetMHCIIpan-4.2/
 
 *Scatter plot depicts allele-specific performance following additional training*
 
