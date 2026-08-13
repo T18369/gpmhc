@@ -1,43 +1,19 @@
 #!/usr/bin/env python3
 """
-Chemistry-annotation training script 
+Chemistry-annotation training
 
 imports the chemistry-specific architecture (gpmhc.baseline_model_chemannot, which in turn imports
 gpmhc.gnn_parts_chemannot) and defaults to json_input_chemannot.json.
 
-Starting checkpoint for THIS experiment is 002's fine-tuned
-HLAII_best.pth, NOT the released model_final.pth. This is deliberate: the
-chemistry annotation is meant to be measured as a delta on top of the
-heterodimer fine-tuning 002 already captured, not conflated with it. Using
-model_final.pth here would let ordinary fine-tuning gains masquerade as
-chemistry-annotation gains. The reference AP to compare against is
-therefore ~0.863 (002's result), not ~0.82 (the released checkpoint).
-
-Explicitly does NOT touch:
-  - mhc_adj / graph topology / edge enumeration (chemistry features are
-    appended to existing edges at forward-time in gnn_parts_chemannot.py,
-    not baked into graph construction)
+Starting checkpoint is 002's fine-tuned HLAII_best.pth, not the released model_final.pth. \
+chemnnotation is meant to be measured as a delta 
 
 Known unresolved gaps (same as the baseline pipeline, inherited as-is):
   - loss_options.loss_func == "MaskedBCEWithLogitsLoss" is referenced by
     the config but not implemented anywhere in the provided codebase.
-    This script uses plain BCEWithLogitsLoss instead.
-  - mhc_seq_df.csv must be present at the working directory this script is
-    run from (data.py's get_psuedos hardcodes a bare relative path).
+   using plain BCEWithLogitsLoss instead.
 
-CONFIRMED hard constraints (same as baseline pipeline):
-  - GNN.forward() hardcodes .cuda() on node_feats and edge_feats regardless
-    of module device - no CPU code path exists. This script requires CUDA.
-  - Starting from 002's HLAII_best.pth checkpoint, exactly one layer is
-    expected to show a shape mismatch and be reinitialized:
-    init_context.project_edge1's input dimension changes from
-    node_feat_size+3 to node_feat_size+9 because edge_feat_size changed.
-    Everything else (including whatever heterodimer fine-tuning 002 did to
-    the rest of the network) should load from the checkpoint with an exact
-    match. Because that one layer starts randomly initialized, do not
-    expect a --skip_training sanity check on this pipeline to reproduce
-    ~0.863 AP before any training - that number is only meaningful for the
-    untouched 002 checkpoint evaluated by its own (unmodified) architecture.
+
 """
 import os
 import sys
