@@ -1,26 +1,12 @@
 #!/usr/bin/env python3
 
 """
-Baseline Graph-pMHC HLA-II training and checkpoint verification.
+Baseline Graph-pMHC HLA-II training
 
-Phase 1 baseline only. This script does not modify:
-    - chemistry-aware edge features
-    - continuous distance features
-    - mhc_adj / graph topology
-
-The goal is to verify that the reconstructed baseline architecture and
-pretrained checkpoint reproduce the expected Graph-pMHC performance before
-any model modifications are introduced.
-
-Known baseline limitations:
-    - json_input.json references MaskedBCEWithLogitsLoss, but that loss is not
-      implemented in the provided codebase. Plain BCEWithLogitsLoss is used.
-    - gpmhc/data.py expects mhc_seq_df.csv at the working directory.
-    - baseline_model.py hardcodes .cuda() inside GNN.forward(), so CUDA is
-      required.
+Verify reconstructed baseline architecture and pretrained checkpoint reproduce the expected performance 
+    - json_input.json references MaskedBCEWithLogitsLoss, BCEWithLogitsLoss is used. *to be updated
     - A previous random-initialization run reached only AP ~0.13-0.17 after
-      20 epochs at lr=1e-5. The pretrained checkpoint should therefore be
-      verified before training.
+      20 epochs at lr=1e-5. 
 
 Usage:
     python analysis/experiment2/02_train_HLAII.py \
@@ -28,12 +14,7 @@ Usage:
         --train_csv path/to/train.csv \
         --test_csv path/to/test.csv
 
-For checkpoint-only verification:
-    python analysis/experiment2/02_train_HLAII.py \
-        --checkpoint path/to/model_final.pth \
-        --train_csv path/to/train.csv \
-        --test_csv path/to/test.csv \
-        --skip_training
+        --skip_training #for checkpoint only
 """
 
 import argparse
@@ -346,9 +327,7 @@ def train(
         lr=args.lr,
     )
 
-    # json_input.json references MaskedBCEWithLogitsLoss, but that loss is
-    # not implemented in the supplied codebase. Use the baseline BCE loss
-    # explicitly rather than silently assuming another implementation.
+    # json_input.json references MaskedBCEWithLogitsLoss
     loss_fn = nn.BCEWithLogitsLoss()
 
     metrics = []
@@ -367,7 +346,6 @@ def train(
             optimizer.zero_grad()
 
             output = model(x_batch)
-
             if output.ndim > 1:
                 logits = output[:, :16].max(dim=1).values
             else:
