@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 """
-Chemistry-annotation training script (PHASE 2 - parallel, non-destructive).
-EXPERIMENT 003_HLAIIhet_chemannot.
+Chemistry-annotation training script 
 
-This is a self-contained sibling of train_HLAII_baseline.py, not a
-replacement for it. It imports the chemistry-specific architecture
-(gpmhc.baseline_model_chemannot, which in turn imports
+imports the chemistry-specific architecture (gpmhc.baseline_model_chemannot, which in turn imports
 gpmhc.gnn_parts_chemannot) and defaults to json_input_chemannot.json.
-Nothing in gnn_parts.py, baseline_model.py, json_input.json, or
-train_HLAII_baseline.py is read, imported, or modified by this script -
-the baseline pipeline that reproduces the released checkpoint and fine-
-tunes to AP ~0.863 (experiment 002_HLAII_heterodimer) is completely
-untouched and can still be run independently at any time.
 
 Starting checkpoint for THIS experiment is 002's fine-tuned
 HLAII_best.pth, NOT the released model_final.pth. This is deliberate: the
@@ -254,15 +246,7 @@ def main():
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-    # -----------------------------
-    # Model
-    # -----------------------------
-    # Order matters here: build on CPU, move to CUDA, THEN load the checkpoint
-    # with map_location matching that same device. Loading with map_location
-    #="cpu" and moving the model afterward (or not at all) is exactly what
-    # produced the device-mismatch crash in the earlier debug run - the
-    # hardcoded .cuda() calls inside GNN.forward assume the rest of the model
-    # is already on CUDA too.
+
     print("[main] building model architecture (build_model)...", flush=True)
     _t_model_start = time.perf_counter()
     model, model_arch = build_model(config)
@@ -280,9 +264,6 @@ def main():
     model = load_checkpoint(model, args.checkpoint, device)
     print(f"[main] checkpoint loaded ({time.perf_counter() - _t_ckpt_start:.1f}s)", flush=True)
 
-    # -----------------------------
-    # Data
-    # -----------------------------
     print(f"[main] reading train CSV: {args.train_csv}", flush=True)
     _t_csv_start = time.perf_counter()
     train_df = pd.read_csv(args.train_csv, low_memory=False)
@@ -296,11 +277,6 @@ def main():
 
     schema_options = config["dataloader_options"]["csv_to_df"]["schema_options"]
 
-    # cleanup_schema -> get_psuedos reads mhc_seq_df.csv and does per-allotype
-    # pandas lookups/string reconstruction. This has had ZERO print visibility
-    # until now and is a real candidate for a silent multi-hour stall,
-    # especially if mhc_seq_df.csv is large or if allotype matching is doing
-    # more per-row work than expected. Watch this specific pair of prints.
     print("[main] cleanup_schema(train_df) starting - this reads mhc_seq_df.csv "
           "and does per-allotype sequence reconstruction; if execution stalls "
           "here for a long time, that function is the bottleneck, not anything "
@@ -314,11 +290,7 @@ def main():
     test_df = cleanup_schema(test_df, schema_options)
     print(f"[main] cleanup_schema(test_df) done ({time.perf_counter() - _t_schema_start:.1f}s)", flush=True)
 
-    # NOTE: tokenize() only produces padded token-id tensors here. Graph
-    # construction happens lazily inside GNN.forward via lookup_graph, using
-    # model.arch.lookup_table (built once at model init from mhc_adj /
-    # mhc_lens / bc_pad in json_input.json). No graph objects are created
-    # at this stage - this is expected, not a gap.
+    # tokenize() only produces padded token-id tensors 
     print("[main] tokenize(train_df) starting...", flush=True)
     _t_tok_start = time.perf_counter()
     x_train = tokenize(train_df, model_arch.tokenizer)
@@ -355,14 +327,7 @@ def main():
     )
     log("Dataloaders ready.")
 
-    # -----------------------------
-    # Pre-training sanity check (mandatory)
-    # -----------------------------
-    # Evaluate the loaded checkpoint BEFORE any optimizer step. This isolates
-    # "does the checkpoint + reconstructed architecture reproduce ~0.863 AP on
-    # its own" from "does further training help" - if this number is far from
-    # 0.863, the problem is in checkpoint/architecture reconstruction, not in
-    # anything the training loop does, and training further will not fix it.
+
     log("Running pre-training sanity check on loaded checkpoint...")
     print("[main] entering pretrain-sanity-eval over the FULL test set "
           f"({len(test_loader.dataset)} examples) - this runs BEFORE any "
@@ -381,23 +346,13 @@ def main():
         log("skip_training set - exiting after sanity check.")
         return
 
-    # -----------------------------
-    # Optimizer / loss
-    # -----------------------------
+
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 
-    # Baseline-verification choice: plain BCEWithLogitsLoss, matching
-    # baseline_model.py's own loss_fn (minus its max-over-alleles reduction,
-    # which only applies to eval-shaped (batch, 32) output and is not
-    # relevant here since the training branch returns (batch,) directly).
-    # config['loss_options']['loss_func'] names "MaskedBCEWithLogitsLoss",
-    # which is not implemented anywhere in the provided files - flagged
-    # above, not silently substituted without notice.
+    # Baseline-verification choice: plain BCEWithLogitsLoss, matching baseline_model.py's own loss_fn 
     loss_fn = nn.BCEWithLogitsLoss()
 
-    # -----------------------------
-    # Training loop
-    # -----------------------------
+
     metrics_log = []
     best_ap = -1.0
 
