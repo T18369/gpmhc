@@ -3,7 +3,7 @@ To address the lower performance observed for HLA-DQ, a targeted augmentation of
 coverage by increasing the number of sequence-diversified training examples.
 Source EL (not BA) files and allele list from https://services.healthtech.dtu.dk/services/NetMHCIIpan-4.2/
 
-*Scatter plot depicts allele-specific performance following additional training*
+To execute: `run_augment.sh` *adjust paths as needed*
 
 ### Pipeline (Filtering/preprocessing) ###
 1 - DQ heterodimer characterization `01_parse_dq_heterodimers.py` `02_extract_el_heterodimer_pairs.py`
