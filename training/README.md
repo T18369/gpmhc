@@ -1,6 +1,5 @@
 The original Graph-pMHC repository ships inference-only code. Everything in this repo related to 
-training (training loop, checkpoint-loading verification, diagnostics, evaluation harness) was written
-independently using the public model/config.
+training (training loop, checkpoint-loading verification, diagnostics, evaluation harness) was written independently using the public model/config. Notebooks are exported from Google Colab.
 
 ## Gpmhc Baseline Reproduction ##
 A training/evaluation loop was implemented from-scratch to verify that the published checkpoint and 
