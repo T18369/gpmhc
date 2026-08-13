@@ -1,11 +1,12 @@
 # Graph-pMHC: Independent Analysis and Extensions
 An extension of the Graph-pMHC GNN, used to evaluate the model and explore extensions to its representation of peptide-MHC Class II interactions.
 
-Initial work focused on evaluating prediction quality beyond aggregate AP by granularizing performance across allele classes and allotypes. Decreases in accuracy are structured rather than random, concentrated in specific DQ allotypes, independent of training coverage, and associated with structural isolation. 
+Initial work focused on evaluating prediction quality beyond aggregate AP by granularizing performance across allele classes and allotypes. Decreases in accuracy are structured rather than random, concentrated in specific DQ allotypes, independent of training coverage, and associated with structural isolation. (see analysis folder)
 
-Ongoing work explores whether additional biochemical/structural information can complement the original graph representation. 
+Ongoing work explores whether additional biochemical/structural information can complement the original graph representation.
+(see training folder)
 
-The aim is to develop a richer representation of the pMHC interface while retaining the strengths of the original model. Longer-term, this provides a foundation for extending pMHC modeling toward integrating TCR recognition
+The aim is to develop a richer representation of the pMHC interface while retaining the strengths of the original model. Longer-term, this provides a foundation for extending pMHC modeling toward integrating TCR recognition.
 
 
 **Test/Training Dataset:** The `Presentation_df_w_preds.csv` file is available within the original Graph-pMHC Zenodo dataset. The file is ~1.4 GB.
