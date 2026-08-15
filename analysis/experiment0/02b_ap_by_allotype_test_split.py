@@ -1,11 +1,8 @@
 """
 02b_ap_by_allotype_test_split.py
 
-Experiment 0.2b - Per-allotype performance atlas (test split)
-
 Replicates the Graph-pMHC benchmark evaluation using the predefined
-test split, then examines performance across individual allotypes
-and MHC class.
+test split, then examines performance across individual allotypes.
 
 AP is calculated from the raw Graph-pMHC logits without applying
 a classification threshold.
@@ -25,13 +22,11 @@ Outputs:
         ap_distribution_test.png
         ap_by_molecule_test.png
 """
-
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.metrics import average_precision_score, roc_auc_score
-
 
 DATA = Path("Presentation_df_w_preds.csv") #source from zenodo ~1.4gb/1.4m predictions
 OUT = Path("results")
@@ -45,7 +40,6 @@ OUT_F.mkdir(parents=True, exist_ok=True)
 MIN_SAMPLES = 100
 
 def parse_gene(allotype):
-    """Assign an allotype to its HLA class II locus."""
     allotype = str(allotype).upper()
 
     if "DRB" in allotype:
@@ -57,13 +51,10 @@ def parse_gene(allotype):
     return "OTHER"
 
 def molecule_class(allotype):
-    """Assign multi-chain HLA annotations to DP, DQ, or DR."""
     genes = set()
-
     for allele in str(allotype).split("/"):
         if "*" in allele:
             genes.add(allele.split("*")[0])
-
     if any(g.startswith("DR") for g in genes):
         return "DR"
     if any(g.startswith("DQ") for g in genes):
@@ -73,11 +64,7 @@ def molecule_class(allotype):
 
     return "OTHER"
 
-
-print("=" * 60)
 print("Loading Graph-pMHC prediction dataset")
-print("=" * 60)
-
 df = pd.read_csv(
     DATA,
     usecols=[
@@ -88,20 +75,12 @@ df = pd.read_csv(
     ],
     low_memory=False,
 )
-
 print("\nDataset splits:")
 print(df["split"].value_counts())
 
-
 # Evaluate train/test performance before restricting to the test set.
-# This provides a check of generalization before examining allotype-specific performance.
-
-print("\n" + "=" * 60)
 print("Overall Graph-pMHC generalization")
-print("=" * 60)
-
 overall_rows = []
-
 for split_name, group in df.groupby("split"):
     if group["EL"].nunique() < 2:
         continue
@@ -130,7 +109,6 @@ overall_df = (
 )
 
 print("\nOverall performance")
-print("-" * 40)
 print(overall_df.to_string(index=False))
 
 overall_df.to_csv(
@@ -138,12 +116,10 @@ overall_df.to_csv(
     index=False,
 )
 
-
 if {"train", "test"}.issubset(set(overall_df["split"])):
     train = overall_df.loc[
         overall_df["split"] == "train"
     ].iloc[0]
-
     test = overall_df.loc[
         overall_df["split"] == "test"
     ].iloc[0]
@@ -152,7 +128,6 @@ if {"train", "test"}.issubset(set(overall_df["split"])):
     auc_gap = train["ROC_AUC"] - test["ROC_AUC"]
 
     print("\nGeneralization")
-    print("-" * 40)
     print(f"Train AP      : {train['AP']:.4f}")
     print(f"Test AP       : {test['AP']:.4f}")
     print(f"AP Gap        : {ap_gap:.4f}")
@@ -174,21 +149,15 @@ if {"train", "test"}.issubset(set(overall_df["split"])):
 
 
 # Allotype-level analysis uses the predefined test split.
-
 df = df[df["split"] == "test"].copy()
-
 print("\nTEST split")
-print("-" * 40)
 print(f"Rows: {len(df):,}")
 print(f"Allotypes: {df['allotype'].nunique():,}")
 
 
 # Per-allotype performance
-
 print("\nCalculating per-allotype AP...")
-
 rows = []
-
 for allotype, group in df.groupby("allotype"):
     # Small groups and groups containing only one class are excluded
     # from per-allotype AP calculations.
@@ -225,16 +194,13 @@ ap_df.to_csv(
 )
 
 print("\nAllotype performance")
-print("-" * 40)
 print(f"Evaluated allotypes: {len(ap_df)}")
 print(f"Mean AP: {ap_df.AP.mean():.4f}")
 print(f"Median AP: {ap_df.AP.median():.4f}")
 print(f"Range: {ap_df.AP.min():.4f} - {ap_df.AP.max():.4f}")
 
 
-# Define high- and low-performance groups using the lower and upper
-# quintiles of the observed AP distribution.
-
+# Define high- and low-performance groups
 low_cutoff = ap_df.AP.quantile(0.20)
 high_cutoff = ap_df.AP.quantile(0.80)
 
@@ -250,7 +216,6 @@ ap_df[ap_df.AP >= high_cutoff].to_csv(
 
 
 # MHC class-level performance
-
 print("\nCalculating molecule AP...")
 df["molecule"] = df["allotype"].apply(molecule_class)
 mol_rows = []
@@ -282,7 +247,6 @@ mol_df.to_csv(
     index=False,
 )
 
-
 # Summary
 with open(OUT_T / "ap_summary_test.txt", "w") as f:
     f.write("Graph-pMHC TEST SPLIT AP SUMMARY\n")
@@ -296,7 +260,6 @@ with open(OUT_T / "ap_summary_test.txt", "w") as f:
     f.write(f"Minimum AP: {ap_df.AP.min():.5f}\n")
     f.write(f"Maximum AP: {ap_df.AP.max():.5f}\n")
 
-
 # Figures
 fig, ax = plt.subplots(figsize=(7, 5))
 ax.hist(
@@ -309,7 +272,6 @@ ax.axvline(
     linestyle="--",
     color="gray",
 )
-
 ax.set_xlabel("Average Precision")
 ax.set_ylabel("Number of allotypes")
 ax.set_title(
@@ -318,16 +280,12 @@ ax.set_title(
     f"(Mean={ap_df.AP.mean():.3f}; "
     f"Range={ap_df.AP.min():.3f}-{ap_df.AP.max():.3f})"
 )
-
 plt.tight_layout()
-
 plt.savefig(
     OUT_F / "ap_distribution_test.png",
     dpi=300,
 )
-
 plt.close()
-
 
 fig, ax = plt.subplots(figsize=(12, 6))
 
@@ -351,16 +309,13 @@ ax.set_ylabel("Average Precision")
 ax.set_ylim(0, 1.05)
 ax.set_title("Graph-pMHC TEST split\nPer-allotype AP")
 ax.legend()
-
 plt.tight_layout()
-
 plt.savefig(
     OUT_F / "ap_by_allotype_test.png",
     dpi=300,
 )
 
 plt.close()
-
 
 fig, ax = plt.subplots(figsize=(6, 5))
 
@@ -373,16 +328,12 @@ ax.bar(
 ax.set_ylabel("Average Precision")
 ax.set_ylim(0, 1.05)
 ax.set_title("Graph-pMHC TEST split\nAP by molecule class")
-
 plt.tight_layout()
-
 plt.savefig(
     OUT_F / "ap_by_molecule_test.png",
     dpi=300,
 )
-
 plt.close()
-
 
 print("\nLowest AP allotypes")
 print(
