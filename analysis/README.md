@@ -3,7 +3,7 @@ Experiment 0 characterizes where and why Graph-pMHC performance varies across HL
 
 Together, these analyses distinguish data-coverage effects from limitations of the current graph representation, providing the rationale for subsequent structural and molecular-dynamics analyses.
 
-## Experiment 1 - Generating Structures ##
+## Experiment 1 - Structural Analysis ##
 Experiment 1 selects informative peptide-MHCII examples, generates FASTA inputs for structure 
 predictions, and extracts peptide-MHC distance maps from predicted structures, with additional analysis on contact ratios (hard-proximal-distal). AlphaFold-Multimer structures are generated through ColabFold, and results are processed to generate continuous and binary interface representations. 
 
