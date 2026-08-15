@@ -5,14 +5,12 @@ Chemistry-annotation training
 imports the chemistry-specific architecture (gpmhc.baseline_model_chemannot, which in turn imports
 gpmhc.gnn_parts_chemannot) and defaults to json_input_chemannot.json.
 
-Starting checkpoint is 002's fine-tuned HLAII_best.pth, not the released model_final.pth. \
-chemnnotation is meant to be measured as a delta 
+Starting checkpoint is 002's fine-tuned HLAII_best.pth, not the released model_final.pth.
 
 Known unresolved gaps (same as the baseline pipeline, inherited as-is):
   - loss_options.loss_func == "MaskedBCEWithLogitsLoss" is referenced by
     the config but not implemented anywhere in the provided codebase.
    using plain BCEWithLogitsLoss instead.
-
 
 """
 import os
@@ -21,7 +19,6 @@ import json
 import argparse
 import importlib
 import time
-
 import numpy as np
 import pandas as pd
 import torch
@@ -36,14 +33,9 @@ sys.path.insert(0, PROJECT_ROOT)
 
 from gpmhc.data import cleanup_schema, tokenize, dataset
 
-
 def log(msg):
     print(msg, flush=True)
 
-
-# =====================================================================
-# Config
-# =====================================================================
 def parse_args():
     p = argparse.ArgumentParser(description="Graph-pMHC HLA-II baseline training")
     p.add_argument("--config", type=str, default="models/baseline_model/json_input_chemannot.json")
@@ -68,7 +60,6 @@ def parse_args():
                          "~0.863 AP before spending any epochs (against 002's fine-tuned checkpoint, not the released 0.82 baseline).")
     return p.parse_args()
 
-
 def build_model(config):
     """Instantiate the model architecture directly, bypassing json_to_learner /
     fastai Learner entirely (confirmed unnecessary and non-functional as
@@ -78,18 +69,15 @@ def build_model(config):
     model = model_arch.get_model(config["model_hyper_opts"])
     return model, model_arch
 
-
 def load_checkpoint(model, checkpoint_path, device):
     if not os.path.exists(checkpoint_path):
         raise FileNotFoundError(f"Checkpoint path given but not found: {checkpoint_path}")
-
     log(f"Loading checkpoint: {checkpoint_path}")
     # map_location must match the device the model will actually run on -
     # GNN.forward hardcodes .cuda() internally regardless of module device,
     # so loading to "cpu" here and running forward later (as in the earlier
     # debug snippet) is exactly what produced the device-mismatch crash.
     ckpt = torch.load(checkpoint_path, map_location=device)
-
     # Checkpoints seen so far in this codebase use either a raw state_dict,
     # a "model_state_dict" key (this script's own save format), or a "model"
     # key (seen in the debug snippet that hit the device-mismatch crash).
@@ -127,21 +115,14 @@ def load_checkpoint(model, checkpoint_path, device):
     if not result.missing_keys and not result.unexpected_keys:
         log("Checkpoint loaded with an exact key match.")
     else:
-        log("Checkpoint loaded with mismatches above - verify these are expected "
-            "before trusting downstream metrics.")
-
+        log("Checkpoint loaded with mismatches above - verify these are expected before trusting downstream metrics.")
     return model
 
-
-# =====================================================================
-# Evaluation
-# =====================================================================
 def evaluate(model, loader, device, tag="eval"):
     """Eval-mode GNN.forward returns (batch, 32): columns [0:16] are
     per-allele logits, columns [16:32] are per-allele graph indices
     (see baseline_model.py's non-training branch). Correct reduction is
     max over the 16 allele logits - NOT a fixed column index.
-
     tag distinguishes which call site this is in the printed log (e.g.
     the mandatory pre-training sanity check vs. a normal per-epoch eval) -
     this function previously had zero print statements despite running
@@ -183,10 +164,6 @@ def evaluate(model, loader, device, tag="eval"):
     print(f"[{tag}] END total={time.perf_counter() - _t0:.1f}s  AP={ap:.4f}  AUC={auc:.4f}", flush=True)
     return ap, auc
 
-
-# =====================================================================
-# Main
-# =====================================================================
 def main():
     print("[main] SCRIPT STARTED", flush=True)
     args = parse_args()
@@ -209,9 +186,7 @@ def main():
     if not torch.cuda.is_available():
         raise RuntimeError(
             "CUDA is not available. GNN.forward() hardcodes .cuda() internally "
-            "and has no CPU code path - this will crash partway through the first "
-            "forward pass. Switch the Colab runtime to a GPU runtime (Runtime > "
-            "Change runtime type > GPU) before running this script."
+            "Change runtime type > GPU before running this script."
         )
     device = torch.device("cuda")
     log(f"Device: {device}")
@@ -221,7 +196,6 @@ def main():
     np.random.seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-
 
     print("[main] building model architecture (build_model)...", flush=True)
     _t_model_start = time.perf_counter()
@@ -234,25 +208,20 @@ def main():
 
     model.to(device)
     print(f"[main] model.to(device) done ({time.perf_counter() - _t_build_done:.1f}s)", flush=True)
-
     print(f"[main] loading checkpoint from {args.checkpoint}", flush=True)
     _t_ckpt_start = time.perf_counter()
     model = load_checkpoint(model, args.checkpoint, device)
     print(f"[main] checkpoint loaded ({time.perf_counter() - _t_ckpt_start:.1f}s)", flush=True)
-
     print(f"[main] reading train CSV: {args.train_csv}", flush=True)
     _t_csv_start = time.perf_counter()
     train_df = pd.read_csv(args.train_csv, low_memory=False)
     print(f"[main] train CSV read ({time.perf_counter() - _t_csv_start:.1f}s), shape={train_df.shape}", flush=True)
-
     print(f"[main] reading test CSV: {args.test_csv}", flush=True)
     _t_csv_start = time.perf_counter()
     test_df = pd.read_csv(args.test_csv, low_memory=False)
     print(f"[main] test CSV read ({time.perf_counter() - _t_csv_start:.1f}s), shape={test_df.shape}", flush=True)
     log(f"Train: {train_df.shape}  Test: {test_df.shape}")
-
     schema_options = config["dataloader_options"]["csv_to_df"]["schema_options"]
-
     print("[main] cleanup_schema(train_df) starting - this reads mhc_seq_df.csv "
           "and does per-allotype sequence reconstruction; if execution stalls "
           "here for a long time, that function is the bottleneck, not anything "
@@ -260,19 +229,16 @@ def main():
     _t_schema_start = time.perf_counter()
     train_df = cleanup_schema(train_df, schema_options)
     print(f"[main] cleanup_schema(train_df) done ({time.perf_counter() - _t_schema_start:.1f}s)", flush=True)
-
     print("[main] cleanup_schema(test_df) starting...", flush=True)
     _t_schema_start = time.perf_counter()
     test_df = cleanup_schema(test_df, schema_options)
     print(f"[main] cleanup_schema(test_df) done ({time.perf_counter() - _t_schema_start:.1f}s)", flush=True)
-
     # tokenize() only produces padded token-id tensors 
     print("[main] tokenize(train_df) starting...", flush=True)
     _t_tok_start = time.perf_counter()
     x_train = tokenize(train_df, model_arch.tokenizer)
     print(f"[main] tokenize(train_df) done ({time.perf_counter() - _t_tok_start:.1f}s), shape={x_train.shape}", flush=True)
     y_train = train_df["EL"].values.astype("float32")
-
     print("[main] tokenize(test_df) starting...", flush=True)
     _t_tok_start = time.perf_counter()
     x_test = tokenize(test_df, model_arch.tokenizer)
@@ -303,7 +269,6 @@ def main():
     )
     log("Dataloaders ready.")
 
-
     log("Running pre-training sanity check on loaded checkpoint...")
     print("[main] entering pretrain-sanity-eval over the FULL test set "
           f"({len(test_loader.dataset)} examples) - this runs BEFORE any "
@@ -316,18 +281,15 @@ def main():
         log("WARNING: checkpoint-only AP is far below the ~0.863 reference. This points "
             "to a checkpoint/architecture mismatch (see missing/unexpected key warnings "
             "above) rather than a training-loop issue. Consider stopping here to debug "
-            "before spending epochs on it.")
 
     if args.skip_training:
         log("skip_training set - exiting after sanity check.")
         return
 
-
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 
     # Baseline-verification choice: plain BCEWithLogitsLoss, matching baseline_model.py's own loss_fn 
     loss_fn = nn.BCEWithLogitsLoss()
-
 
     metrics_log = []
     best_ap = -1.0
@@ -422,7 +384,6 @@ def main():
     metrics_df.to_csv(os.path.join(args.metric_dir, "training_metrics.csv"), index=False)
 
     log(f"Training complete. Best test AP: {best_ap:.4f} (reference: 002 fine-tuned checkpoint ~0.863)")
-
 
 if __name__ == "__main__":
     main()
