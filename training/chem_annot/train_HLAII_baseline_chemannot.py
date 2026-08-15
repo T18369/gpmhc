@@ -11,7 +11,6 @@ Known unresolved gaps (same as the baseline pipeline, inherited as-is):
   - loss_options.loss_func == "MaskedBCEWithLogitsLoss" is referenced by
     the config but not implemented anywhere in the provided codebase.
    using plain BCEWithLogitsLoss instead.
-
 """
 import os
 import sys
@@ -73,14 +72,7 @@ def load_checkpoint(model, checkpoint_path, device):
     if not os.path.exists(checkpoint_path):
         raise FileNotFoundError(f"Checkpoint path given but not found: {checkpoint_path}")
     log(f"Loading checkpoint: {checkpoint_path}")
-    # map_location must match the device the model will actually run on -
-    # GNN.forward hardcodes .cuda() internally regardless of module device,
-    # so loading to "cpu" here and running forward later (as in the earlier
-    # debug snippet) is exactly what produced the device-mismatch crash.
     ckpt = torch.load(checkpoint_path, map_location=device)
-    # Checkpoints seen so far in this codebase use either a raw state_dict,
-    # a "model_state_dict" key (this script's own save format), or a "model"
-    # key (seen in the debug snippet that hit the device-mismatch crash).
     if isinstance(ckpt, dict) and "model_state_dict" in ckpt:
         state_dict = ckpt["model_state_dict"]
     elif isinstance(ckpt, dict) and "model" in ckpt:
@@ -119,14 +111,10 @@ def load_checkpoint(model, checkpoint_path, device):
     return model
 
 def evaluate(model, loader, device, tag="eval"):
-    """Eval-mode GNN.forward returns (batch, 32): columns [0:16] are
-    per-allele logits, columns [16:32] are per-allele graph indices
-    (see baseline_model.py's non-training branch). Correct reduction is
-    max over the 16 allele logits - NOT a fixed column index.
-    tag distinguishes which call site this is in the printed log (e.g.
-    the mandatory pre-training sanity check vs. a normal per-epoch eval) -
-    this function previously had zero print statements despite running
-    over the full test set BEFORE the first training batch, which is a
+    """Eval-mode GNN.forward returns (batch, 32): columns [0:16] are per-allele logits, columns [16:32] are per-allele graph indices
+    (see baseline_model.py's non-training branch). Correct reduction is max over the 16 allele logits - NOT a fixed column index.
+    tag distinguishes which call site this is in the printed log (e.g. the mandatory pre-training sanity check vs. a normal per-epoch eval) -
+    this function previously had zero print statements despite running over the full test set BEFORE the first training batch, which is a
     likely place for a run to appear to hang silently.
     """
     print(f"[{tag}] START - {len(loader.dataset)} examples, "
@@ -180,17 +168,10 @@ def main():
           f"edge_feat_size={config['model_hyper_opts'].get('edge_feat_size')} "
           f"use_chemistry_edges={config['model_hyper_opts'].get('use_chemistry_edges')}", flush=True)
 
-    # baseline_model.py's GNN.forward() hardcodes .cuda() on node_feats/edge_feats
-    # regardless of the module's actual device - there is no working CPU path in
-    # the architecture as provided. Refuse to proceed rather than crash mid-forward.
     if not torch.cuda.is_available():
-        raise RuntimeError(
-            "CUDA is not available. GNN.forward() hardcodes .cuda() internally "
-            "Change runtime type > GPU before running this script."
-        )
+        raise RuntimeError("CUDA is not available")
     device = torch.device("cuda")
     log(f"Device: {device}")
-
     seed = config.get("seed", 0)
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -287,7 +268,6 @@ def main():
         return
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
-
     # Baseline-verification choice: plain BCEWithLogitsLoss, matching baseline_model.py's own loss_fn 
     loss_fn = nn.BCEWithLogitsLoss()
 
