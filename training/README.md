@@ -35,15 +35,11 @@ Exploring whether training on single-allotypic samples before introducing multi-
 clinically relevant) samples improve inherent deconvolution via graph enumeration and therefore
 downstream ranking and overall model performance.
 
-Molecular Dynamics Simulation pilot: use OpenMM (convenient integration) to identify biophysical 
-features amongst high-error DQ, low-error DQ, and control DP/DR AF2 structures that further build
-the static adjacency matrix. 
+Molecular Dynamics Simulation pilot: OpenMM to identify biophysical features amongst high-error DQ, 
+low-error DQ, and control DP/DR AF2 structures that further build the static adjacency matrix. 
 Low-cost improvements: 
-
   per-residue flexibility (root mean square flexibility)
-  
   contact persistence
-  
   SASA - solvent accessible surface area
   
 
