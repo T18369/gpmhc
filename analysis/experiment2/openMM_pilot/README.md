@@ -1,6 +1,5 @@
 ## OpenMM Pilot ##
-`run_analysis.sh` to execute
-Representative structure: DQ2.5 + acidic peptide (electrostatics test case)
+`run_analysis.sh` to execute sample structure: DQ2.5 + acidic peptide (electrostatics test case)
 
 ### Workflow: ###
 1 - Protonation & Environment Initialization
