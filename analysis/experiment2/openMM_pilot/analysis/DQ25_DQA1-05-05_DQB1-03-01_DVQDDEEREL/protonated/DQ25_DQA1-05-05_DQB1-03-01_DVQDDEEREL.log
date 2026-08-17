@@ -1,0 +1,1383 @@
+INFO:PDB2PQR v3.6.2: biomolecular structure conversion software.
+INFO:Please cite:  Jurrus E, et al.  Improvements to the APBS biomolecular solvation software suite.  Protein Sci 27 112-128 (2018).
+INFO:Please cite:  Dolinsky TJ, et al.  PDB2PQR: expanding and upgrading automated preparation of biomolecular structures for molecular simulations. Nucleic Acids Res 35 W522-W525 (2007).
+INFO:Checking and transforming input arguments.
+INFO:Loading topology files.
+INFO:Loading molecule: analysis/experiment2/openmm_pilot/input/DQ25_DQA1-05-05_DQB1-03-01_DVQDDEEREL.pdb
+INFO:Setting up molecule.
+INFO:Created biomolecule object with 525 residues and 4157 atoms.
+INFO:Setting termini states for biomolecule chains.
+WARNING:Gap in backbone detected between PRO A 44 and SER A 45!
+INFO:Loading forcefield.
+INFO:Loading hydrogen topology definitions.
+WARNING:Missing atom OXT in residue LEU A 254
+WARNING:Missing atom OXT in residue HIS B 261
+WARNING:Missing atom OXT in residue LEU C 10
+WARNING:Missing atom OXT in residue LEU A 254
+WARNING:Missing atom OXT in residue HIS B 261
+WARNING:Missing atom OXT in residue LEU C 10
+INFO:Attempting to repair 3 missing atoms in biomolecule.
+WARNING:Missing atom OXT in residue LEU A 254
+WARNING:Missing atom OXT in residue HIS B 261
+WARNING:Missing atom OXT in residue LEU C 10
+INFO:Added atom OXT to residue LEU A 254 at coordinates -11.546, -96.420, -45.347
+INFO:Added atom OXT to residue HIS B 261 at coordinates 0.795, -89.161, -35.025
+INFO:Added atom OXT to residue LEU C 10 at coordinates -10.878, 21.835, 7.688
+INFO:Updating disulfide bridges.
+INFO:Debumping biomolecule.
+INFO:Assigning titration states with PROPKA.
+INFO:
+propka3.5.1                                                                                  2026-08-16
+
+-------------------------------------------------------------------------------
+--                                                                           --
+--  PROPKA: A PROTEIN PKA PREDICTOR                                          --
+--                                                                           --
+--  VERSION 1.0,  04/25/2004,  IOWA CITY                                     --
+--  BY HUI LI                                                                --
+--                                                                           --
+--  VERSION 2.0,  11/05/2007, IOWA CITY/COPENHAGEN                           --
+--  BY DELPHINE C. BAS AND DAVID M. ROGERS                                   --
+--                                                                           --
+--  VERSION 3.0,  01/06/2011, COPENHAGEN                                     --
+--  BY MATS H.M. OLSSON AND CHRESTEN R. SONDERGARD                           --
+--                                                                           --
+--  VERSION 3.1,  07/01/2011, COPENHAGEN                                     --
+--  BY CHRESTEN R. SONDERGARD AND MATS H.M. OLSSON                           --
+--                                                                           --
+--  VERSION 3.2,  06/17/2020, PLANET EARTH                                   --
+--  SEE ABOVE FOR AUTHORS                                                    --
+--                                                                           --
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+References:
+
+Very Fast Empirical Prediction and Rationalization of Protein pKa Values.
+Hui Li, Andrew D. Robertson and Jan H. Jensen. PROTEINS: Structure, Function,
+and Bioinformatics. 61:704-721 (2005)
+
+Very Fast Prediction and Rationalization of pKa Values for Protein-Ligand
+Complexes.  Delphine C. Bas, David M. Rogers and Jan H. Jensen.  PROTEINS:
+Structure, Function, and Bioinformatics 73:765-783 (2008)
+
+PROPKA3: Consistent Treatment of Internal and Surface Residues in Empirical
+pKa predictions.  Mats H.M. Olsson, Chresten R. Sondergard, Michal Rostkowski,
+and Jan H. Jensen.  Journal of Chemical Theory and Computation, 7(2):525-537
+(2011)
+
+Improved Treatment of Ligands and Coupling Effects in Empirical Calculation
+and Rationalization of pKa Values.  Chresten R. Sondergaard, Mats H.M. Olsson,
+Michal Rostkowski, and Jan H. Jensen.  Journal of Chemical Theory and
+Computation, (2011)
+-------------------------------------------------------------------------------
+
+
+
+WARNING:Missing atoms or failed protonation for ALA  13 A (BBN) -- please check the structure
+WARNING:Group (BBN) for    90-   N    13-ALA (A) [  12.031   -8.180   -1.064] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:                90-   N    13-ALA (A) [  12.031   -8.180   -1.064] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:                90-   N    13-ALA (A) [  12.031   -8.180   -1.064] N
+WARNING:Missing atoms or failed protonation for SER  19 A (BBN) -- please check the structure
+WARNING:Group (BBN) for   132-   N    19-SER (A) [   9.859    1.340    8.688] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:               132-   N    19-SER (A) [   9.859    1.340    8.688] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:               132-   N    19-SER (A) [   9.859    1.340    8.688] N
+WARNING:Missing atoms or failed protonation for CYS  21 A (BBN) -- please check the structure
+WARNING:Group (BBN) for   145-   N    21-CYS (A) [  10.938    5.430   11.633] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:               145-   N    21-CYS (A) [  10.938    5.430   11.633] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:               145-   N    21-CYS (A) [  10.938    5.430   11.633] N
+WARNING:Missing atoms or failed protonation for ASN  94 A (AMD) -- please check the structure
+WARNING:Group (AMD) for   738-  CG    94-ASN (A) [   3.396   29.203    7.277] C
+WARNING:Expected 3 interaction atoms for acids, found:
+WARNING:              4141- NH2     8-ARG (C) [   2.264   27.641    7.344] N
+WARNING:               739- ND2    94-ASN (A) [   2.559   28.312    7.773] N
+WARNING:Expected 1 interaction atoms for bases, found:
+WARNING:               740- OD1    94-ASN (A) [   3.281   30.422    7.500] O
+WARNING:Missing atoms or failed protonation for ALA   6 B (BBN) -- please check the structure
+WARNING:Group (BBN) for  2008-   N     6-ALA (B) [ -37.312    1.550  -25.359] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              2008-   N     6-ALA (B) [ -37.312    1.550  -25.359] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              2008-   N     6-ALA (B) [ -37.312    1.550  -25.359] N
+WARNING:Missing atoms or failed protonation for SER  26 B (BBN) -- please check the structure
+WARNING:Group (BBN) for  2150-   N    26-SER (B) [   0.869   18.781  -15.266] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              2150-   N    26-SER (B) [   0.869   18.781  -15.266] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              2150-   N    26-SER (B) [   0.869   18.781  -15.266] N
+WARNING:Missing atoms or failed protonation for TRP  93 B (TRP) -- please check the structure
+WARNING:Group (TRP) for  2718- NE1    93-TRP (B) [   1.515   28.922   14.047] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              2718- NE1    93-TRP (B) [   1.515   28.922   14.047] N
+WARNING:Expected 1 interaction atoms for bases, found:
+WARNING:              2718- NE1    93-TRP (B) [   1.515   28.922   14.047] N
+WARNING:Missing atoms or failed protonation for GLN  96 B (AMD) -- please check the structure
+WARNING:Group (AMD) for  2742-  CD    96-GLN (B) [  -1.458   34.031   16.859] C
+WARNING:Expected 3 interaction atoms for acids, found:
+WARNING:              2743- NE2    96-GLN (B) [  -0.351   33.688   16.203] N
+WARNING:                 0- HE2    96-GLN (B) [   0.509   34.177   16.405] H
+WARNING:Expected 1 interaction atoms for bases, found:
+WARNING:              2744- OE1    96-GLN (B) [  -2.537   34.219   16.281] O
+WARNING:Missing atoms or failed protonation for ARG 102 B (ARG) -- please check the structure
+WARNING:Group (ARG) for  2797-  CZ   102-ARG (B) [  -7.320   28.469   14.180] C
+WARNING:Expected 8 interaction atoms for acids, found:
+WARNING:              2796- NH2   102-ARG (B) [  -6.031   28.594   13.891] N
+WARNING:              2794-  NE   102-ARG (B) [  -7.773   27.359   14.742] N
+WARNING:              2795- NH1   102-ARG (B) [  -8.148   29.469   13.891] N
+WARNING:                 0- HH2   102-ARG (B) [  -5.160   29.096   13.987] H
+WARNING:                 0-HH11   102-ARG (B) [  -8.584   29.995   14.635] H
+WARNING:                 0-HH12   102-ARG (B) [  -8.341   29.702   12.927] H
+WARNING:Expected 3 interaction atoms for bases, found:
+WARNING:              2796- NH2   102-ARG (B) [  -6.031   28.594   13.891] N
+WARNING:              2794-  NE   102-ARG (B) [  -7.773   27.359   14.742] N
+WARNING:              2795- NH1   102-ARG (B) [  -8.148   29.469   13.891] N
+WARNING:Missing atoms or failed protonation for HIS 199 B (HIS) -- please check the structure
+WARNING:Group (HIS) for  3591-  CG   199-HIS (B) [   1.839  -40.969   -5.156] C
+WARNING:Expected 4 interaction atoms for acids, found:
+WARNING:                 0- HD1   199-HIS (B) [   1.942  -39.420   -6.607] H
+WARNING:              3595- NE2   199-HIS (B) [   0.089  -41.875   -6.125] N
+WARNING:              3593- ND1   199-HIS (B) [   1.475  -40.250   -6.270] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              3595- NE2   199-HIS (B) [   0.089  -41.875   -6.125] N
+WARNING:              3593- ND1   199-HIS (B) [   1.475  -40.250   -6.270] N
+WARNING:Missing atoms or failed protonation for GLN 223 B (BBN) -- please check the structure
+WARNING:Group (BBN) for  3782-   N   223-GLN (B) [  -0.213  -33.719   -7.402] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              3782-   N   223-GLN (B) [  -0.213  -33.719   -7.402] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              3782-   N   223-GLN (B) [  -0.213  -33.719   -7.402] N
+WARNING:Missing atoms or failed protonation for SER 224 B (BBN) -- please check the structure
+WARNING:Group (BBN) for  3791-   N   224-SER (B) [  -0.022  -36.125   -9.992] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              3791-   N   224-SER (B) [  -0.022  -36.125   -9.992] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              3791-   N   224-SER (B) [  -0.022  -36.125   -9.992] N
+WARNING:Missing atoms or failed protonation for ALA 227 B (BBN) -- please check the structure
+WARNING:Group (BBN) for  3812-   N   227-ALA (B) [  -1.339  -38.125  -13.930] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              3812-   N   227-ALA (B) [  -1.339  -38.125  -13.930] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              3812-   N   227-ALA (B) [  -1.339  -38.125  -13.930] N
+WARNING:Missing atoms or failed protonation for GLN 228 B (AMD) -- please check the structure
+WARNING:Group (AMD) for  3823-  CD   228-GLN (B) [  -1.271  -41.656   -8.273] C
+WARNING:Expected 3 interaction atoms for acids, found:
+WARNING:              3824- NE2   228-GLN (B) [  -0.441  -41.875   -7.266] N
+WARNING:Expected 1 interaction atoms for bases, found:
+WARNING:              3825- OE1   228-GLN (B) [  -2.482  -41.469   -8.109] O
+WARNING:Missing atoms or failed protonation for GLN   3 C (BBN) -- please check the structure
+WARNING:Group (BBN) for  4089-   N     3-GLN (C) [   3.529   34.125   10.344] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              4089-   N     3-GLN (C) [   3.529   34.125   10.344] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              4089-   N     3-GLN (C) [   3.529   34.125   10.344] N
+WARNING:Missing atoms or failed protonation for GLU   7 C (BBN) -- please check the structure
+WARNING:Group (BBN) for  4123-   N     7-GLU (C) [  -4.863   28.094   10.906] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              4123-   N     7-GLU (C) [  -4.863   28.094   10.906] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              4123-   N     7-GLU (C) [  -4.863   28.094   10.906] N
+WARNING:Missing atoms or failed protonation for ARG   8 C (BBN) -- please check the structure
+WARNING:Group (BBN) for  4132-   N     8-ARG (C) [  -5.008   26.359    9.055] N
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              4132-   N     8-ARG (C) [  -5.008   26.359    9.055] N
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              4132-   N     8-ARG (C) [  -5.008   26.359    9.055] N
+WARNING:Missing atoms or failed protonation for ARG   8 C (ARG) -- please check the structure
+WARNING:Group (ARG) for  4142-  CZ     8-ARG (C) [   1.516   26.562    7.492] C
+WARNING:Expected 8 interaction atoms for acids, found:
+WARNING:              4139-  NE     8-ARG (C) [   0.207   26.688    7.695] N
+WARNING:              4140- NH1     8-ARG (C) [   2.084   25.359    7.441] N
+WARNING:              4141- NH2     8-ARG (C) [   2.264   27.641    7.344] N
+WARNING:                 0-  HE     8-ARG (C) [  -0.176   27.622    7.730] H
+WARNING:                 0-HH11     8-ARG (C) [   1.520   24.529    7.555] H
+WARNING:                 0-HH12     8-ARG (C) [   3.079   25.276    7.288] H
+WARNING:Expected 3 interaction atoms for bases, found:
+WARNING:              4139-  NE     8-ARG (C) [   0.207   26.688    7.695] N
+WARNING:              4140- NH1     8-ARG (C) [   2.084   25.359    7.441] N
+WARNING:              4141- NH2     8-ARG (C) [   2.264   27.641    7.344] N
+WARNING:Missing atoms or failed protonation for GLU   9 C (COO) -- please check the structure
+WARNING:Group (COO) for  4149-  CD     9-GLU (C) [  -8.375   23.953   13.578] C
+WARNING:Expected 2 interaction atoms for acids, found:
+WARNING:              2828- OE1   106-GLU (B) [  -7.105   22.672   14.281] O
+WARNING:              4150- OE1     9-GLU (C) [  -8.117   23.750   14.781] O
+WARNING:              4151- OE2     9-GLU (C) [  -9.492   24.344   13.180] O
+WARNING:Expected 2 interaction atoms for bases, found:
+WARNING:              2828- OE1   106-GLU (B) [  -7.105   22.672   14.281] O
+WARNING:              4150- OE1     9-GLU (C) [  -8.117   23.750   14.781] O
+WARNING:              4151- OE2     9-GLU (C) [  -9.492   24.344   13.180] O
+INFO:Coupling map:
+Covalent coupling map for Conformation container 1A with 4933 atoms and 1298 groups
+            LYS   5 A | ARG 102 B | GLU 106 B | GLU 194 B | N+    1 C | ASP   1 C | GLU   7 C | GLU   9 C | 
+LYS   5 A             |           |           |     X     |           |           |           |           | 
+ARG 102 B             |           |           |           |           |           |     X     |           | 
+GLU 106 B             |           |           |           |           |           |           |     X     | 
+GLU 194 B       X     |           |           |           |           |           |           |           | 
+N+    1 C             |           |           |           |           |     X     |           |           | 
+ASP   1 C             |           |           |           |     X     |           |           |           | 
+GLU   7 C             |     X     |           |           |           |           |           |           | 
+GLU   9 C             |           |     X     |           |           |           |           |           | 
+INFO:Calculating pKas for Conformation container 1A with 4933 atoms and 1298 groups
+INFO:Removing penalised groups!!!
+INFO:pKa determinants:
+
+---------  -----   ------   ---------------------    --------------    --------------    --------------
+                            DESOLVATION  EFFECTS       SIDECHAIN          BACKBONE        COULOMBIC
+ RESIDUE    pKa    BURIED     REGULAR      RE        HYDROGEN BOND     HYDROGEN BOND      INTERACTION
+---------  -----   ------   ---------   ---------    --------------    --------------    --------------
+
+ASP  25 A   4.38     7 %    0.54  300   0.10    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.07 ARG  61 B
+
+ASP  29 A   3.13     0 %    0.34  259   0.00    0    0.00 XXX   0 X   -0.84 ASN  51 B   -0.17 HIS  30 A
+
+ASP  53 A   3.91    86 %    2.86  523   0.77    0   -1.60 HIS  30 A   -0.81 VAL  31 A   -0.26 ARG 181 B
+ASP  53 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 ASP  29 A
+ASP  53 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.89 HIS  30 A
+
+ASP  55 A   6.22   100 %    3.51  577   0.67    0   -0.14 ARG 181 B   -0.14 TRP 185 B   -0.02 LYS 119 A
+ASP  55 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.01 ARG 125 B
+ASP  55 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.21 ASP  53 A
+ASP  55 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.02 GLU  56 A
+ASP  55 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.35 ASP 184 B
+ASP  55 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -2.03 ARG 181 B
+
+ASP  61 A   3.83    22 %    1.13  344   0.09    0    0.00 XXX   0 X   -0.15 GLY  63 A   -0.22 ARG  64 A
+ASP  61 A                                            0.00 XXX   0 X   -0.82 ARG  64 A    0.00 XXX   0 X
+
+ASP  80 A   3.39     0 %    0.42  250   0.00    0    0.00 XXX   0 X   -0.82 GLN  82 A    0.00 XXX   0 X
+
+ASP 135 A   4.26    73 %    2.37  487   0.20    0   -0.05 THR  15 A   -0.58 ASN 136 A   -0.01 ARG  66 B
+ASP 135 A                                           -0.85 LYS 165 A    0.00 XXX   0 X    0.19 ASP 167 A
+ASP 135 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.81 LYS 165 A
+
+ASP 167 A   2.19    53 %    1.95  429   0.00    0   -0.85 SER 169 A   -0.16 ASP 167 A   -0.24 LYS  44 B
+ASP 167 A                                           -0.34 CYS  21 A   -0.78 SER 169 A   -0.52 LYS 165 A
+ASP 167 A                                           -0.02 ARG  66 B    0.00 XXX   0 X   -0.65 ARG  66 B
+
+ASP 187 A   3.78    18 %    0.88  332   0.10    0   -0.65 HIS 202 A    0.00 XXX   0 X   -0.36 HIS 202 A
+
+ASP 196 A   3.91     0 %    0.14  185   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.03 LYS 197 A
+
+GLU  24 A   4.34     0 %    0.18  263   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.24 ARG  57 B
+GLU  24 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.08 ARG  61 B
+GLU  24 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.17 ARG  71 B
+GLU  24 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.12 ASP  73 B
+GLU  24 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 ASP  75 B
+
+GLU  51 A   7.12*  100 %    3.18  635   0.91    0   -0.00 THR  49 A   -0.56 SER 164 A   -0.14 ARG 181 B
+GLU  51 A                                           -0.77 SER 164 A    0.00 XXX   0 X    0.11 ASP  55 A
+GLU  51 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.44 GLU  56 A
+GLU  51 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.55 LYS  44 B
+
+GLU  56 A   6.20   100 %    3.22  601   0.05    0   -0.75 SER 161 A    0.00 XXX   0 X   -0.04 LYS 172 A
+GLU  56 A                                           -0.78 CYS  70 A    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU  66 A   4.71     0 %    0.25  257   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.16 ARG  64 A
+GLU  66 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.12 ASP  61 A
+
+GLU 110 A   4.91    21 %    0.55  341   0.15    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.39 ARG  66 B
+GLU 110 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.10 ASP 167 A
+
+GLU 113 A   5.15    23 %    0.54  346   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.18 LYS 165 A
+GLU 113 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.29 ASP 135 A
+
+GLU 155 A   4.59     0 %    0.09  184   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU 159 A   4.74    88 %    2.52  527   0.39    0   -0.85 LYS 172 A    0.00 XXX   0 X   -1.82 LYS 172 A
+
+GLU 183 A   4.59     0 %    0.07  118   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.02 GLU 184 A
+
+GLU 184 A   3.95     4 %    0.38  292   0.01    0   -0.16 SER 181 A    0.00 XXX   0 X    0.00 XXX   0 X
+GLU 184 A                                           -0.78 TYR 186 A    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU 191 A   4.27    22 %    0.71  342   0.09    0   -0.68 ASN 143 A    0.00 XXX   0 X   -0.35 LYS 189 A
+
+GLU 204 A   4.05     0 %    0.38  239   0.00    0   -0.52 HIS 202 A    0.00 XXX   0 X    0.07 ASP 187 A
+GLU 204 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.37 HIS 202 A
+
+GLU 206 A   4.97    38 %    0.45  388   0.03    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU 213 A   3.58     0 %    0.46  256   0.00    0   -0.15 SER 224 B    0.00 XXX   0 X   -0.38 LYS 230 B
+GLU 213 A                                           -0.85 LYS 230 B    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU 216 A   4.54     5 %    0.59  294   0.03    0    0.00 XXX   0 X   -0.68 GLU 216 A   -0.07 LYS 230 B
+GLU 216 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.16 GLU 213 A
+
+C-  254 A   3.32     0 %    0.12   38   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+HIS  30 A   7.73    55 %   -1.49  434   0.00    0    1.60 ASP  53 A    0.00 XXX   0 X   -0.01 ARG 126 B
+HIS  30 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.17 ASP  29 A
+HIS  30 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.07 GLU 118 B
+HIS  30 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.89 ASP  53 A
+
+HIS  50 A   2.33   100 %   -4.17  629   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+HIS  93 A   5.86     9 %   -0.48  307   0.00    0    0.04 GLN   3 C    0.00 XXX   0 X   -0.03 LYS 100 A
+HIS  93 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.09 N+    1 C
+HIS  93 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.08 ARG   8 C
+
+HIS 151 A   6.61     0 %   -0.16  142   0.00    0    0.00 XXX   0 X    0.13 SER 148 A    0.00 XXX   0 X
+HIS 151 A                                            0.00 XXX   0 X    0.13 ASN 149 A    0.00 XXX   0 X
+
+HIS 168 A   1.62    92 %   -2.45  539   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -1.66 LYS  44 B
+HIS 168 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.48 ARG  61 B
+HIS 168 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.16 ARG  66 B
+HIS 168 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.14 ARG  71 B
+
+HIS 192 A   4.59    82 %   -2.71  512   0.00    0    0.00 XXX   0 X    0.00 GLU 110 A    0.00 XXX   0 X
+HIS 192 A                                            0.00 XXX   0 X    0.80 PRO 139 A    0.00 XXX   0 X
+
+HIS 202 A   7.81     6 %   -0.57  297   0.00    0    0.65 ASP 187 A    0.00 XXX   0 X   -0.02 LYS 201 A
+HIS 202 A                                            0.52 GLU 204 A    0.00 XXX   0 X    0.36 ASP 187 A
+HIS 202 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.37 GLU 204 A
+
+HIS 250 A   6.42     0 %   -0.08   83   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS  21 A  10.07    26 %    1.46  353   0.00    0   -0.27 SER  19 A    0.00 XXX   0 X   -0.18 LYS 165 A
+CYS  21 A                                           -0.70 SER 166 A    0.00 XXX   0 X   -0.09 LYS  44 B
+CYS  21 A                                            0.34 ASP 167 A    0.00 XXX   0 X   -0.21 ARG  66 B
+CYS  21 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.13 ASP  25 A
+CYS  21 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.02 ASP 135 A
+CYS  21 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.56 ASP 167 A
+
+CYS  70 A  15.36   100 %    3.40  580   0.00    0    0.78 GLU  56 A    0.00 XXX   0 X   -0.03 ARG  75 A
+CYS  70 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.02 GLU  51 A
+CYS  70 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.16 ASP  55 A
+CYS  70 A                                            0.00 XXX   0 X    0.00 XXX   0 X    2.03 GLU  56 A
+
+CYS 132 A  99.99     0 %    0.00    0   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS 188 A  99.99     0 %    0.00    0   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS 220 A   9.41     0 %    0.49  234   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.08 LYS 230 B
+
+TYR  34 A  16.31   100 %    3.97  568   0.00    0    0.25 GLU 118 B    0.00 XXX   0 X    0.13 ASP  53 A
+TYR  34 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.08 TYR 115 B
+TYR  34 A                                            0.00 XXX   0 X    0.00 XXX   0 X    1.88 GLU 118 B
+
+TYR  39 A  10.71    27 %    1.09  358   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.01 ASP  38 B
+TYR  39 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.38 LYS  92 A
+
+TYR  42 A  10.70     8 %    0.58  305   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.05 GLU  31 B
+TYR  42 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.07 ASP  38 B
+
+TYR  48 A  16.61   100 %    5.48  594   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.02 GLU   9 C
+TYR  48 A                                            0.00 XXX   0 X    0.00 XXX   0 X    1.11 C-   10 C
+
+TYR  59 A  13.53    63 %    2.64  457   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.40 GLU  56 A
+TYR  59 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.24 ASP  61 A
+TYR  59 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.08 ARG  64 A
+TYR  59 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 GLU  66 A
+TYR  59 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.30 CYS  70 A
+TYR  59 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.00 GLU 159 A
+
+TYR 175 A  15.27   100 %    3.74  570   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.38 ASP  55 A
+TYR 175 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.10 GLU  56 A
+TYR 175 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.12 CYS  70 A
+TYR 175 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.05 ARG 181 B
+TYR 175 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.98 ASP 184 B
+
+TYR 186 A  12.51    32 %    1.28  370   0.00    0    0.78 GLU 184 A    0.00 XXX   0 X    0.45 GLU 184 A
+
+LYS   5 A  10.17     0 %   -0.33  247   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+LYS  65 A  10.38     0 %   -0.12  167   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+LYS  92 A  10.73     0 %   -0.15  238   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.38 TYR  39 A
+
+LYS 100 A  10.39     0 %   -0.11  175   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+LYS 119 A  10.98    76 %   -3.15  493   0.00    0    0.85 ASP 153 B    0.00 XXX   0 X    0.02 ASP  55 A
+LYS 119 A                                            0.80 ASP 184 B    0.00 XXX   0 X   -0.02 ARG 125 B
+LYS 119 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.85 ASP 153 B
+LYS 119 A                                            0.00 XXX   0 X    0.00 XXX   0 X    1.13 ASP 184 B
+
+LYS 165 A  10.91    56 %   -1.99  438   0.00    0    0.85 ASP 135 A    0.00 XXX   0 X    0.18 CYS  21 A
+LYS 165 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.18 GLU 113 A
+LYS 165 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.14 ARG  66 B
+LYS 165 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.81 ASP 135 A
+LYS 165 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.52 ASP 167 A
+
+LYS 172 A  10.41   100 %   -2.80  578   0.00    0    0.85 GLU 159 A    0.00 XXX   0 X    0.04 GLU  56 A
+LYS 172 A                                            0.00 XXX   0 X    0.00 XXX   0 X    1.82 GLU 159 A
+
+LYS 189 A  10.55     1 %   -0.30  283   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.35 GLU 191 A
+
+LYS 197 A  10.46     0 %   -0.07  128   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.03 ASP 196 A
+
+LYS 201 A  10.14    16 %   -0.36  325   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG  64 A  12.66     0 %   -0.30  220   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.08 TYR  59 A
+ARG  64 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.22 ASP  61 A
+ARG  64 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.16 GLU  66 A
+
+ARG  75 A  11.83     4 %   -0.40  292   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.03 CYS  70 A
+ARG  75 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.30 ARG  14 B
+
+ARG  78 A  12.42     0 %   -0.08  146   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG 101 A  13.15    49 %   -1.55  419   0.00    0    0.89 ASP  89 B    0.00 XXX   0 X    0.12 TYR  41 B
+ARG 101 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.39 TYR  69 B
+ARG 101 A                                            0.00 XXX   0 X    0.00 XXX   0 X    0.81 ASP  89 B
+
+ARG 240 A  12.34     0 %   -0.16  181   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.01 ARG 243 A
+
+ARG 243 A  12.39     0 %   -0.11  130   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG 249 A  12.46     0 %   -0.04   86   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+N+    1 A   7.73     0 %   -0.26  130   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.00 LYS   5 A
+N+    1 A                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.01 ARG 137 B
+
+ASP  34 B   3.92     0 %    0.12  116   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ASP  38 B   5.51    75 %    3.28  490   0.41    0   -0.78 SER  41 A   -0.13 SER  41 A    0.00 XXX   0 X
+ASP  38 B                                            0.00 XXX   0 X   -0.71 TYR  42 A    0.00 XXX   0 X
+ASP  38 B                                            0.00 XXX   0 X   -0.35 PHE  39 B    0.00 XXX   0 X
+
+ASP  73 B   2.89    43 %    1.97  403   0.15    0   -1.40 ARG  57 B   -0.82 ASP  75 B   -0.01 ARG  55 B
+ASP  73 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.11 ARG  61 B
+ASP  73 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.14 ARG  71 B
+ASP  73 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.02 ARG  80 B
+ASP  73 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.54 ARG  57 B
+
+ASP  75 B   4.22    15 %    0.60  324   0.01    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.17 ARG  55 B
+ASP  75 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.41 ARG  57 B
+ASP  75 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.39 ASP  73 B
+
+ASP  89 B   5.28    80 %    3.43  506   0.44    0   -0.89 ARG 101 A    0.00 XXX   0 X   -0.06 N+    1 C
+ASP  89 B                                           -0.32 TYR  69 B    0.00 XXX   0 X   -0.31 ARG   8 C
+ASP  89 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.81 ARG 101 A
+
+ASP 108 B   3.31     6 %    0.44  297   0.02    0   -0.57 ARG 112 B    0.00 XXX   0 X   -0.38 ARG 112 B
+
+ASP 153 B   4.64    60 %    2.04  448   0.27    0   -0.26 THR 186 B    0.00 XXX   0 X    0.49 ASP 184 B
+ASP 153 B                                           -0.85 LYS 119 A    0.00 XXX   0 X   -0.85 LYS 119 A
+
+ASP 167 B   3.99     0 %    0.19  207   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ASP 184 B   3.26    86 %    2.71  523   0.22    0   -0.85 THR 186 B   -0.22 ASP 184 B   -0.11 ARG 125 B
+ASP 184 B                                           -0.80 LYS 119 A   -0.37 THR 186 B   -1.13 LYS 119 A
+
+ASP 201 B   3.35    11 %    0.87  312   0.12    0   -0.72 ASN 166 B   -0.30 GLN 198 B   -0.41 ARG 165 B
+ASP 201 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.02 HIS 199 B
+
+GLU  31 B   4.67     0 %    0.12  181   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.05 GLU 191 A
+
+GLU  37 B   4.69     0 %    0.19  223   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU  54 B   4.30     0 %    0.23  132   0.00    0   -0.44 ASN  51 B    0.00 XXX   0 X    0.01 ASP  29 A
+
+GLU  67 B   5.18    25 %    0.62  350   0.06    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU  68 B   5.57    81 %    3.36  509   0.54    0   -0.54 ARG  61 B    0.00 XXX   0 X   -0.14 LYS  44 B
+GLU  68 B                                           -0.26 ARG  71 B    0.00 XXX   0 X    0.03 GLU  24 A
+GLU  68 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 ASP  73 B
+GLU  68 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -1.07 ARG  61 B
+GLU  68 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.87 ARG  71 B
+
+GLU  77 B   4.53     0 %    0.21  254   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.21 ARG 104 B
+GLU  77 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 ASP  75 B
+
+GLU  91 B   4.69     0 %    0.19  218   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU  98 B   4.73     0 %    0.13  188   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.11 ARG 102 B
+GLU  98 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.07 GLU 101 B
+GLU  98 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 GLU   6 C
+
+GLU 101 B   4.42     0 %    0.26  186   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.26 LYS  97 B
+GLU 101 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.07 ARG 104 B
+
+GLU 118 B   7.01    97 %    3.55  552   0.40    0   -0.78 GLN  57 A    0.00 XXX   0 X   -0.07 HIS  30 A
+GLU 118 B                                           -0.53 THR 122 B    0.00 XXX   0 X    0.19 ASP  53 A
+GLU 118 B                                           -0.25 TYR  34 A    0.00 XXX   0 X    0.00 XXX   0 X
+
+GLU 128 B   4.71     0 %    0.24  235   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.03 HIS 209 B
+
+GLU 139 B   4.89    11 %    0.89  313   0.10    0   -0.16 ARG 137 B    0.00 XXX   0 X   -0.23 ARG 137 B
+GLU 139 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.13 HIS 143 B
+GLU 139 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.07 HIS 144 B
+
+GLU 169 B   4.46     0 %    0.40  241   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.14 LYS 160 B
+GLU 169 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.28 ARG 162 B
+GLU 169 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.04 HIS 206 B
+GLU 169 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 GLU 208 B
+
+GLU 170 B   4.99    11 %    0.54  311   0.10    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.21 ARG 165 B
+GLU 170 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.01 GLU 169 B
+GLU 170 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.04 ASP 201 B
+
+GLU 208 B   3.87     0 %    0.39  257   0.00    0   -0.15 ARG 162 B    0.00 XXX   0 X   -0.31 LYS 160 B
+GLU 208 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.31 ARG 162 B
+GLU 208 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.25 HIS 206 B
+
+GLU 219 B   4.63     0 %    0.26  265   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.21 ARG 221 B
+GLU 219 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.09 ASP 167 B
+
+GLU 225 B   4.48     0 %    0.12  163   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.14 ARG 221 B
+GLU 225 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.01 HIS 199 B
+
+C-  261 B   3.35     0 %    0.15  116   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+HIS 113 B   6.03    15 %   -0.43  323   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.05 ARG 120 B
+
+HIS 143 B   6.89     0 %   -0.23  212   0.00    0    0.00 XXX   0 X    0.50 LEU 141 B    0.13 GLU 139 B
+
+HIS 144 B   6.29     0 %   -0.22  248   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.02 N+    1 A
+HIS 144 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.00 LYS   5 A
+HIS 144 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.07 GLU 139 B
+HIS 144 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.04 HIS 143 B
+
+HIS 199 B   6.15     0 %   -0.38  265   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.02 ASP 201 B
+HIS 199 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.01 GLU 225 B
+
+HIS 206 B   5.61    17 %   -0.86  329   0.00    0    0.00 XXX   0 X    0.07 HIS 206 B   -0.06 LYS 160 B
+HIS 206 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.32 ARG 162 B
+HIS 206 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.04 GLU 169 B
+HIS 206 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.25 GLU 208 B
+
+HIS 209 B   5.31    43 %   -1.98  402   0.00    0    0.00 XXX   0 X    0.85 PRO 156 B   -0.09 ARG 126 B
+HIS 209 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 GLU 128 B
+
+HIS 252 B   5.92     0 %   -0.40  242   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.10 ARG 240 A
+HIS 252 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.08 HIS 253 B
+
+HIS 253 B   6.18     0 %   -0.17  181   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.15 LYS 257 B
+
+HIS 261 B   6.43     0 %   -0.07   70   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS  47 B  99.99     0 %    0.00    0   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS 111 B  99.99     0 %    0.00    0   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS 149 B  99.99     0 %    0.00    0   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+CYS 205 B  99.99     0 %    0.00    0   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+TYR  41 B  12.53   100 %    4.44  658   0.00    0   -0.44 ARG   8 C    0.00 XXX   0 X   -0.12 ARG 101 A
+TYR  41 B                                           -0.85 TYR  69 B    0.00 XXX   0 X    0.71 ASP   5 C
+TYR  41 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -2.03 ARG   8 C
+TYR  41 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.82 ASP  89 B
+
+TYR  48 B  10.57    86 %    2.43  523   0.00    0   -0.75 ARG  61 B    0.00 XXX   0 X    0.02 GLU  24 A
+TYR  48 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.12 ASP  25 A
+TYR  48 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.13 ARG  57 B
+TYR  48 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -1.21 ARG  61 B
+TYR  48 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.19 GLU  68 B
+TYR  48 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.15 ARG  71 B
+TYR  48 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.08 ASP  73 B
+
+TYR  58 B  15.69   100 %    3.78  620   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.04 ARG 102 B
+TYR  58 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.21 C-   10 C
+TYR  58 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 TYR  48 A
+TYR  58 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.61 TYR  79 B
+TYR  58 B                                            0.00 XXX   0 X    0.00 XXX   0 X    1.09 GLU   9 C
+
+TYR  62 B  19.76   100 %    3.88  678   0.00    0   -0.22 THR  60 B    0.00 XXX   0 X    0.19 ASP  89 B
+TYR  62 B                                            0.11 ASP   5 C    0.00 XXX   0 X   -0.15 ARG 102 B
+TYR  62 B                                            0.41 TYR  79 B    0.00 XXX   0 X    0.09 ASP   4 C
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X    2.03 ASP   5 C
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.72 ARG   8 C
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.24 GLU   9 C
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.81 TYR  41 B
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.54 TYR  58 B
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.53 TYR  69 B
+TYR  62 B                                            0.00 XXX   0 X    0.00 XXX   0 X    2.02 TYR  79 B
+
+TYR  64 B  11.69    50 %    2.48  422   0.00    0   -0.85 SER 102 A    0.00 XXX   0 X    0.02 GLU  37 B
+TYR  64 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.03 ASP  38 B
+TYR  64 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.01 GLU  67 B
+
+TYR  69 B  18.55   100 %    4.19  610   0.00    0    0.85 TYR  41 B    0.00 XXX   0 X   -0.39 ARG 101 A
+TYR  69 B                                            0.32 ASP  89 B    0.00 XXX   0 X    0.68 ASP   5 C
+TYR  69 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.91 ARG   8 C
+TYR  69 B                                            0.00 XXX   0 X    0.00 XXX   0 X    2.03 TYR  41 B
+TYR  69 B                                            0.00 XXX   0 X    0.00 XXX   0 X    1.78 ASP  89 B
+
+TYR  79 B  14.09    99 %    3.71  559   0.00    0   -0.85 THR 103 B    0.00 XXX   0 X   -0.25 ARG 102 B
+TYR  79 B                                           -0.41 TYR  62 B    0.00 XXX   0 X   -0.02 ARG 104 B
+TYR  79 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.11 ASP   4 C
+TYR  79 B                                            0.00 XXX   0 X    0.00 XXX   0 X    1.43 ASP   5 C
+TYR  79 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.00 ARG   8 C
+TYR  79 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.37 GLU   9 C
+
+TYR  92 B  12.01     6 %    0.85  299   0.00    0   -0.02 GLN  96 B   -0.20 ASP   4 C    0.01 ASP  89 B
+TYR  92 B                                            0.68 ASP   4 C    0.00 XXX   0 X    0.11 ASP   5 C
+TYR  92 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.11 GLU   6 C
+TYR  92 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.46 ASP   4 C
+
+TYR 115 B  11.43    32 %    1.20  372   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.10 ASP  29 A
+TYR 115 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.10 ASP  53 A
+TYR 115 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.05 GLU 118 B
+
+TYR 155 B  13.38    76 %    2.53  494   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.20 GLU 118 B
+TYR 155 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.13 ARG 125 B
+TYR 155 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.10 ARG 126 B
+TYR 155 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.14 ARG 181 B
+TYR 155 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.52 ASP  53 A
+TYR 155 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.50 ASP  55 A
+
+TYR 203 B  12.29    43 %    2.12  403   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.36 ARG 165 B
+TYR 203 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 GLU 170 B
+TYR 203 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.39 ASP 201 B
+
+LYS   4 B  10.48     0 %   -0.02   51   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+LYS   5 B  10.31     0 %   -0.19   63   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+LYS  44 B   7.84*  100 %   -3.29  613   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.09 CYS  21 A
+LYS  44 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.24 ASP 167 A
+LYS  44 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.34 ARG  61 B
+LYS  44 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.05 ARG  66 B
+LYS  44 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 GLU  68 B
+LYS  44 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.55 GLU  51 A
+
+LYS  97 B  10.67     0 %   -0.08  109   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.26 GLU 101 B
+LYS  97 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.02 ARG 104 B
+
+LYS 160 B  10.39     0 %   -0.23  210   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.33 ARG 162 B
+LYS 160 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 GLU 169 B
+LYS 160 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.31 GLU 208 B
+
+LYS 230 B  11.52     0 %   -0.36  212   0.00    0    0.85 GLU 213 A    0.00 XXX   0 X    0.07 GLU 216 A
+LYS 230 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.08 CYS 220 A
+LYS 230 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.38 GLU 213 A
+
+LYS 257 B  10.42     0 %   -0.08  108   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG   8 B  12.47     0 %   -0.03   52   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG  14 B  12.30     0 %   -0.20  167   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG  33 B  12.47     0 %   -0.03   73   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG  55 B  12.43     0 %   -0.15  224   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.01 ASP  73 B
+ARG  55 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.17 ASP  75 B
+ARG  55 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.09 ARG  57 B
+
+ARG  57 B  14.08    26 %   -1.01  355   0.00    0    1.40 ASP  73 B    0.00 XXX   0 X    0.24 GLU  24 A
+ARG  57 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.13 TYR  48 B
+ARG  57 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.41 ASP  75 B
+ARG  57 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.11 ARG  61 B
+ARG  57 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.54 ASP  73 B
+
+ARG  61 B  14.30    82 %   -2.04  511   0.00    0    0.75 TYR  48 B    0.00 XXX   0 X    0.08 GLU  24 A
+ARG  61 B                                            0.54 GLU  68 B    0.00 XXX   0 X    0.07 ASP  25 A
+ARG  61 B                                            0.00 XXX   0 X    0.00 XXX   0 X    1.21 TYR  48 B
+ARG  61 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.11 ASP  73 B
+ARG  61 B                                            0.00 XXX   0 X    0.00 XXX   0 X    1.07 GLU  68 B
+
+ARG  66 B  12.40    48 %   -1.38  416   0.00    0    0.02 ASP 167 A    0.00 XXX   0 X    0.21 CYS  21 A
+ARG  66 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.39 GLU 110 A
+ARG  66 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.01 ASP 135 A
+ARG  66 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.65 ASP 167 A
+
+ARG  71 B  11.61    56 %   -1.63  438   0.00    0    0.26 GLU  68 B    0.00 XXX   0 X    0.17 GLU  24 A
+ARG  71 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.15 TYR  48 B
+ARG  71 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 ASP  73 B
+ARG  71 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.10 ARG  57 B
+ARG  71 B                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.76 ARG  61 B
+ARG  71 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.87 GLU  68 B
+
+ARG  80 B  12.33     0 %   -0.18  231   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.02 ASP  73 B
+
+ARG 102 B  11.61    45 %   -2.54  407   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.04 TYR  58 B
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.15 TYR  62 B
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.25 TYR  79 B
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.11 GLU  98 B
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.11 ASP   4 C
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.08 ASP   5 C
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.34 GLU   6 C
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.04 C-   10 C
+ARG 102 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.53 GLU   9 C
+
+ARG 104 B  12.26     6 %   -0.54  297   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.21 GLU  77 B
+ARG 104 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.02 TYR  79 B
+ARG 104 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.07 GLU 101 B
+
+ARG 112 B  12.81    16 %   -0.63  326   0.00    0    0.57 ASP 108 B    0.00 XXX   0 X    0.38 ASP 108 B
+
+ARG 120 B  12.28     0 %   -0.22  206   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ARG 125 B  11.70    46 %   -1.04  409   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.01 ASP  55 A
+ARG 125 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.13 TYR 155 B
+ARG 125 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.11 ASP 184 B
+
+ARG 126 B  12.03    14 %   -0.57  321   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.10 TYR 155 B
+
+ARG 137 B  12.61     0 %   -0.28  260   0.00    0    0.16 GLU 139 B    0.00 XXX   0 X    0.23 GLU 139 B
+
+ARG 162 B  12.80     0 %   -0.45  270   0.00    0    0.15 GLU 208 B    0.00 XXX   0 X    0.28 GLU 169 B
+ARG 162 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.31 GLU 208 B
+
+ARG 165 B  13.10     4 %   -0.38  292   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.21 GLU 170 B
+ARG 165 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.41 ASP 201 B
+ARG 165 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.36 TYR 203 B
+
+ARG 181 B  12.95    98 %   -2.32  557   0.00    0    0.14 ASP  55 A    0.00 XXX   0 X    0.14 GLU  51 A
+ARG 181 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.26 ASP  53 A
+ARG 181 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.05 TYR 175 A
+ARG 181 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 TYR 155 B
+ARG 181 B                                            0.00 XXX   0 X    0.00 XXX   0 X    2.03 ASP  55 A
+
+ARG 221 B  12.68     0 %   -0.17  212   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.21 GLU 219 B
+ARG 221 B                                            0.00 XXX   0 X    0.00 XXX   0 X    0.14 GLU 225 B
+
+ARG 254 B  12.40     0 %   -0.10  137   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+N+    1 B   7.95     0 %   -0.05   36   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X    0.00 XXX   0 X
+
+ASP   4 C   5.95    35 %    2.52  380   0.14    0   -0.68 TYR  92 B    0.00 XXX   0 X   -0.11 ARG 102 B
+ASP   4 C                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.00 N+    1 C
+ASP   4 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.02 ASP  89 B
+ASP   4 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.02 GLU  98 B
+ASP   4 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.25 GLU   6 C
+
+ASP   5 C  12.08   100 %    7.75  583   0.34    0   -0.11 TYR  62 B    0.00 XXX   0 X   -0.08 ARG 102 B
+ASP   5 C                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.64 ARG   8 C
+ASP   5 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.38 ASP   4 C
+ASP   5 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.01 GLU   6 C
+ASP   5 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.64 ASP  89 B
+
+GLU   6 C   4.57    13 %    0.41  318   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.34 ARG 102 B
+
+GLU   9 C   8.40    80 %    3.61  505   0.39    0    0.00 XXX   0 X    0.00 XXX   0 X    0.43 C-   10 C
+GLU   9 C                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.53 ARG 102 B
+
+C-   10 C   5.30    76 %    2.12  494   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.04 ARG 102 B
+C-   10 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.01 ASP  80 A
+
+ARG   8 C  13.07   100 %   -4.48  606   0.00    0    0.44 TYR  41 B    0.00 XXX   0 X    2.03 TYR  41 B
+ARG   8 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.72 TYR  62 B
+ARG   8 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.91 TYR  69 B
+ARG   8 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.00 TYR  79 B
+ARG   8 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.31 ASP  89 B
+ARG   8 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.64 ASP   5 C
+
+N+    1 C   7.69     0 %   -0.27  259   0.00    0    0.00 XXX   0 X    0.00 XXX   0 X   -0.02 LYS 100 A
+N+    1 C                                            0.00 XXX   0 X    0.00 XXX   0 X   -0.09 ARG 101 A
+N+    1 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.06 ASP  89 B
+N+    1 C                                            0.00 XXX   0 X    0.00 XXX   0 X    0.00 ASP   4 C
+
+Coupled residues (marked *) were detected.Please rerun PropKa with the --display-coupled-residues 
+or -d option for detailed information.
+
+INFO:pKa summary:
+--------------------------------------------------------------------------------------------------------
+SUMMARY OF THIS PREDICTION
+       Group      pKa  model-pKa   ligand atom-type
+   ASP  25 A     4.38       3.80                      
+   ASP  29 A     3.13       3.80                      
+   ASP  53 A     3.91       3.80                      
+   ASP  55 A     6.22       3.80                      
+   ASP  61 A     3.83       3.80                      
+   ASP  80 A     3.39       3.80                      
+   ASP 135 A     4.26       3.80                      
+   ASP 167 A     2.19       3.80                      
+   ASP 187 A     3.78       3.80                      
+   ASP 196 A     3.91       3.80                      
+   ASP  34 B     3.92       3.80                      
+   ASP  38 B     5.51       3.80                      
+   ASP  73 B     2.89       3.80                      
+   ASP  75 B     4.22       3.80                      
+   ASP  89 B     5.28       3.80                      
+   ASP 108 B     3.31       3.80                      
+   ASP 153 B     4.64       3.80                      
+   ASP 167 B     3.99       3.80                      
+   ASP 184 B     3.26       3.80                      
+   ASP 201 B     3.35       3.80                      
+   ASP   4 C     5.95       3.80                      
+   ASP   5 C    12.08       3.80                      
+   GLU  24 A     4.34       4.50                      
+   GLU  51 A     7.12       4.50                      
+   GLU  56 A     6.20       4.50                      
+   GLU  66 A     4.71       4.50                      
+   GLU 110 A     4.91       4.50                      
+   GLU 113 A     5.15       4.50                      
+   GLU 155 A     4.59       4.50                      
+   GLU 159 A     4.74       4.50                      
+   GLU 183 A     4.59       4.50                      
+   GLU 184 A     3.95       4.50                      
+   GLU 191 A     4.27       4.50                      
+   GLU 204 A     4.05       4.50                      
+   GLU 206 A     4.97       4.50                      
+   GLU 213 A     3.58       4.50                      
+   GLU 216 A     4.54       4.50                      
+   GLU  31 B     4.67       4.50                      
+   GLU  37 B     4.69       4.50                      
+   GLU  54 B     4.30       4.50                      
+   GLU  67 B     5.18       4.50                      
+   GLU  68 B     5.57       4.50                      
+   GLU  77 B     4.53       4.50                      
+   GLU  91 B     4.69       4.50                      
+   GLU  98 B     4.73       4.50                      
+   GLU 101 B     4.42       4.50                      
+   GLU 118 B     7.01       4.50                      
+   GLU 128 B     4.71       4.50                      
+   GLU 139 B     4.89       4.50                      
+   GLU 169 B     4.46       4.50                      
+   GLU 170 B     4.99       4.50                      
+   GLU 208 B     3.87       4.50                      
+   GLU 219 B     4.63       4.50                      
+   GLU 225 B     4.48       4.50                      
+   GLU   6 C     4.57       4.50                      
+   GLU   9 C     8.40       4.50                      
+   C-  254 A     3.32       3.20                      
+   C-  261 B     3.35       3.20                      
+   C-   10 C     5.30       3.20                      
+   HIS  30 A     7.73       6.50                      
+   HIS  50 A     2.33       6.50                      
+   HIS  93 A     5.86       6.50                      
+   HIS 151 A     6.61       6.50                      
+   HIS 168 A     1.62       6.50                      
+   HIS 192 A     4.59       6.50                      
+   HIS 202 A     7.81       6.50                      
+   HIS 250 A     6.42       6.50                      
+   HIS 113 B     6.03       6.50                      
+   HIS 143 B     6.89       6.50                      
+   HIS 144 B     6.29       6.50                      
+   HIS 199 B     6.15       6.50                      
+   HIS 206 B     5.61       6.50                      
+   HIS 209 B     5.31       6.50                      
+   HIS 252 B     5.92       6.50                      
+   HIS 253 B     6.18       6.50                      
+   HIS 261 B     6.43       6.50                      
+   CYS  21 A    10.07       9.00                      
+   CYS  70 A    15.36       9.00                      
+   CYS 132 A    99.99       9.00                      
+   CYS 188 A    99.99       9.00                      
+   CYS 220 A     9.41       9.00                      
+   CYS  47 B    99.99       9.00                      
+   CYS 111 B    99.99       9.00                      
+   CYS 149 B    99.99       9.00                      
+   CYS 205 B    99.99       9.00                      
+   TYR  34 A    16.31      10.00                      
+   TYR  39 A    10.71      10.00                      
+   TYR  42 A    10.70      10.00                      
+   TYR  48 A    16.61      10.00                      
+   TYR  59 A    13.53      10.00                      
+   TYR 175 A    15.27      10.00                      
+   TYR 186 A    12.51      10.00                      
+   TYR  41 B    12.53      10.00                      
+   TYR  48 B    10.57      10.00                      
+   TYR  58 B    15.69      10.00                      
+   TYR  62 B    19.76      10.00                      
+   TYR  64 B    11.69      10.00                      
+   TYR  69 B    18.55      10.00                      
+   TYR  79 B    14.09      10.00                      
+   TYR  92 B    12.01      10.00                      
+   TYR 115 B    11.43      10.00                      
+   TYR 155 B    13.38      10.00                      
+   TYR 203 B    12.29      10.00                      
+   LYS   5 A    10.17      10.50                      
+   LYS  65 A    10.38      10.50                      
+   LYS  92 A    10.73      10.50                      
+   LYS 100 A    10.39      10.50                      
+   LYS 119 A    10.98      10.50                      
+   LYS 165 A    10.91      10.50                      
+   LYS 172 A    10.41      10.50                      
+   LYS 189 A    10.55      10.50                      
+   LYS 197 A    10.46      10.50                      
+   LYS 201 A    10.14      10.50                      
+   LYS   4 B    10.48      10.50                      
+   LYS   5 B    10.31      10.50                      
+   LYS  44 B     7.84      10.50                      
+   LYS  97 B    10.67      10.50                      
+   LYS 160 B    10.39      10.50                      
+   LYS 230 B    11.52      10.50                      
+   LYS 257 B    10.42      10.50                      
+   ARG  64 A    12.66      12.50                      
+   ARG  75 A    11.83      12.50                      
+   ARG  78 A    12.42      12.50                      
+   ARG 101 A    13.15      12.50                      
+   ARG 240 A    12.34      12.50                      
+   ARG 243 A    12.39      12.50                      
+   ARG 249 A    12.46      12.50                      
+   ARG   8 B    12.47      12.50                      
+   ARG  14 B    12.30      12.50                      
+   ARG  33 B    12.47      12.50                      
+   ARG  55 B    12.43      12.50                      
+   ARG  57 B    14.08      12.50                      
+   ARG  61 B    14.30      12.50                      
+   ARG  66 B    12.40      12.50                      
+   ARG  71 B    11.61      12.50                      
+   ARG  80 B    12.33      12.50                      
+   ARG 102 B    11.61      12.50                      
+   ARG 104 B    12.26      12.50                      
+   ARG 112 B    12.81      12.50                      
+   ARG 120 B    12.28      12.50                      
+   ARG 125 B    11.70      12.50                      
+   ARG 126 B    12.03      12.50                      
+   ARG 137 B    12.61      12.50                      
+   ARG 162 B    12.80      12.50                      
+   ARG 165 B    13.10      12.50                      
+   ARG 181 B    12.95      12.50                      
+   ARG 221 B    12.68      12.50                      
+   ARG 254 B    12.40      12.50                      
+   ARG   8 C    13.07      12.50                      
+   N+    1 A     7.73       8.00                      
+   N+    1 B     7.95       8.00                      
+   N+    1 C     7.69       8.00                      
+
+INFO:PROPKA information:
+--------------------------------------------------------------------------------------------------------
+Free energy of   folding (kcal/mol) as a function of pH (using neutral reference)
+  0.00     61.49
+  1.00     61.32
+  2.00     60.24
+  3.00     57.44
+  4.00     57.15
+  5.00     66.41
+  6.00     75.57
+  7.00     81.36
+  8.00     86.57
+  9.00     90.11
+ 10.00     98.39
+ 11.00    116.95
+ 12.00    136.54
+ 13.00    153.14
+ 14.00    167.85
+
+The pH of optimum stability is  3.6 for which the free energy is   56.3 kcal/mol at 298K
+Could not determine pH values where the free energy is within 80 % of minimum
+Could not determine the pH-range where the free energy is negative
+
+
+Protein charge of folded and unfolded state as a function of pH
+    pH  unfolded  folded
+  0.00     65.99   65.96
+  0.10     65.99   65.95
+  0.20     65.99   65.93
+  0.30     65.99   65.92
+  0.40     65.98   65.90
+  0.50     65.98   65.87
+  0.60     65.97   65.84
+  0.70     65.97   65.80
+  0.80     65.96   65.75
+  0.90     65.95   65.70
+  1.00     65.93   65.63
+  1.10     65.92   65.55
+  1.20     65.89   65.45
+  1.30     65.87   65.33
+  1.40     65.83   65.20
+  1.50     65.79   65.04
+  1.60     65.74   64.87
+  1.70     65.67   64.66
+  1.80     65.58   64.44
+  1.90     65.48   64.18
+  2.00     65.35   63.89
+  2.10     65.18   63.57
+  2.20     64.98   63.22
+  2.30     64.73   62.82
+  2.40     64.42   62.37
+  2.50     64.04   61.87
+  2.60     63.57   61.31
+  2.70     63.01   60.69
+  2.80     62.33   59.98
+  2.90     61.52   59.20
+  3.00     60.55   58.32
+  3.10     59.42   57.34
+  3.20     58.11   56.26
+  3.30     56.60   55.07
+  3.40     54.88   53.77
+  3.50     52.94   52.35
+  3.60     50.80   50.82
+  3.70     48.45   49.18
+  3.80     45.91   47.42
+  3.90     43.21   45.55
+  4.00     40.36   43.58
+  4.10     37.41   41.52
+  4.20     34.38   39.37
+  4.30     31.33   37.15
+  4.40     28.28   34.88
+  4.50     25.30   32.58
+  4.60     22.43   30.27
+  4.70     19.71   27.98
+  4.80     17.18   25.72
+  4.90     14.87   23.52
+  5.00     12.78   21.39
+  5.10     10.91   19.34
+  5.20      9.25   17.39
+  5.30      7.77   15.52
+  5.40      6.46   13.75
+  5.50      5.27   12.06
+  5.60      4.18   10.46
+  5.70      3.15    8.93
+  5.80      2.15    7.48
+  5.90      1.16    6.08
+  6.00      0.16    4.75
+  6.10     -0.86    3.47
+  6.20     -1.91    2.25
+  6.30     -2.99    1.09
+  6.40     -4.09   -0.03
+  6.50     -5.20   -1.08
+  6.60     -6.28   -2.09
+  6.70     -7.33   -3.04
+  6.80     -8.33   -3.94
+  6.90     -9.26   -4.81
+  7.00    -10.11   -5.63
+  7.10    -10.88   -6.43
+  7.20    -11.58   -7.20
+  7.30    -12.21   -7.94
+  7.40    -12.78   -8.67
+  7.50    -13.30   -9.38
+  7.60    -13.78  -10.07
+  7.70    -14.23  -10.74
+  7.80    -14.65  -11.40
+  7.90    -15.07  -12.02
+  8.00    -15.47  -12.63
+  8.10    -15.87  -13.20
+  8.20    -16.28  -13.74
+  8.30    -16.69  -14.25
+  8.40    -17.11  -14.72
+  8.50    -17.55  -15.17
+  8.60    -18.02  -15.59
+  8.70    -18.52  -15.99
+  8.80    -19.07  -16.37
+  8.90    -19.67  -16.74
+  9.00    -20.34  -17.11
+  9.10    -21.08  -17.49
+  9.20    -21.92  -17.88
+  9.30    -22.85  -18.31
+  9.40    -23.90  -18.76
+  9.50    -25.07  -19.27
+  9.60    -26.37  -19.83
+  9.70    -27.81  -20.46
+  9.80    -29.38  -21.17
+  9.90    -31.07  -21.95
+ 10.00    -32.87  -22.82
+ 10.10    -34.74  -23.77
+ 10.20    -36.66  -24.80
+ 10.30    -38.59  -25.91
+ 10.40    -40.50  -27.07
+ 10.50    -42.36  -28.27
+ 10.60    -44.14  -29.51
+ 10.70    -45.82  -30.77
+ 10.80    -47.38  -32.03
+ 10.90    -48.82  -33.29
+ 11.00    -50.14  -34.55
+ 11.10    -51.35  -35.81
+ 11.20    -52.47  -37.08
+ 11.30    -53.52  -38.36
+ 11.40    -54.53  -39.66
+ 11.50    -55.53  -41.00
+ 11.60    -56.54  -42.39
+ 11.70    -57.60  -43.83
+ 11.80    -58.73  -45.33
+ 11.90    -59.94  -46.89
+ 12.00    -61.26  -48.51
+ 12.10    -62.70  -50.18
+ 12.20    -64.23  -51.90
+ 12.30    -65.86  -53.65
+ 12.40    -67.55  -55.41
+ 12.50    -69.27  -57.15
+ 12.60    -70.98  -58.86
+ 12.70    -72.64  -60.52
+ 12.80    -74.20  -62.11
+ 12.90    -75.65  -63.60
+ 13.00    -76.96  -65.00
+ 13.10    -78.12  -66.29
+ 13.20    -79.13  -67.48
+ 13.30    -80.00  -68.57
+ 13.40    -80.73  -69.55
+ 13.50    -81.34  -70.44
+ 13.60    -81.85  -71.25
+ 13.70    -82.26  -71.97
+ 13.80    -82.60  -72.63
+ 13.90    -82.88  -73.23
+ 14.00    -83.10  -73.77
+The pI is  6.40 (folded) and  6.02 (unfolded)
+
+--------------------------------------------------------------------------------------------------------
+INFO:Applying pKa values at a pH of 5.00:
+INFO:Adding hydrogens to biomolecule.
+INFO:Debumping biomolecule (again).
+WARNING:WARNING: Unable to debump ALA B 227
+WARNING:WARNING: Unable to debump GLU C 6
+INFO:Optimizing hydrogen bonds
+INFO:Applying force field to biomolecule states.
+INFO:Regenerating headers.
+INFO:Regenerating PDB lines.
+WARNING:Ignoring 466 header lines in output.
+WARNING:Ignoring 466 header lines in output.
+   6.50                      
+   HIS  50 A     2.33       6.50                      
+   HIS  93 A     5.86       6.50                      
+   HIS 151 A     6.61       6.50                      
+   HIS 168 A     1.62       6.50                      
+   HIS 192 A     4.59       6.50                      
+   HIS 202 A     7.81       6.50                      
+   HIS 250 A     6.42       6.50                      
+   HIS 113 B     6.03       6.50                      
+   HIS 143 B     6.89       6.50                      
+   HIS 144 B     6.29       6.50                      
+   HIS 199 B     6.15       6.50                      
+   HIS 206 B     5.61       6.50                      
+   HIS 209 B     5.31       6.50                      
+   HIS 252 B     5.92       6.50                      
+   HIS 253 B     6.18       6.50                      
+   HIS 261 B     6.43       6.50                      
+   CYS  21 A    10.07       9.00                      
+   CYS  70 A    15.36       9.00                      
+   CYS 132 A    99.99       9.00                      
+   CYS 188 A    99.99       9.00                      
+   CYS 220 A     9.41       9.00                      
+   CYS  47 B    99.99       9.00                      
+   CYS 111 B    99.99       9.00                      
+   CYS 149 B    99.99       9.00                      
+   CYS 205 B    99.99       9.00                      
+   TYR  34 A    16.31      10.00                      
+   TYR  39 A    10.71      10.00                      
+   TYR  42 A    10.70      10.00                      
+   TYR  48 A    16.61      10.00                      
+   TYR  59 A    13.53      10.00                      
+   TYR 175 A    15.27      10.00                      
+   TYR 186 A    12.51      10.00                      
+   TYR  41 B    12.53      10.00                      
+   TYR  48 B    10.57      10.00                      
+   TYR  58 B    15.69      10.00                      
+   TYR  62 B    19.76      10.00                      
+   TYR  64 B    11.69      10.00                      
+   TYR  69 B    18.55      10.00                      
+   TYR  79 B    14.09      10.00                      
+   TYR  92 B    12.01      10.00                      
+   TYR 115 B    11.43      10.00                      
+   TYR 155 B    13.38      10.00                      
+   TYR 203 B    12.29      10.00                      
+   LYS   5 A    10.17      10.50                      
+   LYS  65 A    10.38      10.50                      
+   LYS  92 A    10.73      10.50                      
+   LYS 100 A    10.39      10.50                      
+   LYS 119 A    10.98      10.50                      
+   LYS 165 A    10.91      10.50                      
+   LYS 172 A    10.41      10.50                      
+   LYS 189 A    10.55      10.50                      
+   LYS 197 A    10.46      10.50                      
+   LYS 201 A    10.14      10.50                      
+   LYS   4 B    10.48      10.50                      
+   LYS   5 B    10.31      10.50                      
+   LYS  44 B     7.84      10.50                      
+   LYS  97 B    10.67      10.50                      
+   LYS 160 B    10.39      10.50                      
+   LYS 230 B    11.52      10.50                      
+   LYS 257 B    10.42      10.50                      
+   ARG  64 A    12.66      12.50                      
+   ARG  75 A    11.83      12.50                      
+   ARG  78 A    12.42      12.50                      
+   ARG 101 A    13.15      12.50                      
+   ARG 240 A    12.34      12.50                      
+   ARG 243 A    12.39      12.50                      
+   ARG 249 A    12.46      12.50                      
+   ARG   8 B    12.47      12.50                      
+   ARG  14 B    12.30      12.50                      
+   ARG  33 B    12.47      12.50                      
+   ARG  55 B    12.43      12.50                      
+   ARG  57 B    14.08      12.50                      
+   ARG  61 B    14.30      12.50                      
+   ARG  66 B    12.40      12.50                      
+   ARG  71 B    11.61      12.50                      
+   ARG  80 B    12.33      12.50                      
+   ARG 102 B    11.61      12.50                      
+   ARG 104 B    12.26      12.50                      
+   ARG 112 B    12.81      12.50                      
+   ARG 120 B    12.28      12.50                      
+   ARG 125 B    11.70      12.50                      
+   ARG 126 B    12.03      12.50                      
+   ARG 137 B    12.61      12.50                      
+   ARG 162 B    12.80      12.50                      
+   ARG 165 B    13.10      12.50                      
+   ARG 181 B    12.95      12.50                      
+   ARG 221 B    12.68      12.50                      
+   ARG 254 B    12.40      12.50                      
+   ARG   8 C    13.07      12.50                      
+   N+    1 A     7.73       8.00                      
+   N+    1 B     7.95       8.00                      
+   N+    1 C     7.69       8.00                      
+
+2026-08-16 04:23:50,362 INFO:main.py:645:non_trivial:PROPKA information:
+--------------------------------------------------------------------------------------------------------
+Free energy of   folding (kcal/mol) as a function of pH (using neutral reference)
+  0.00     61.49
+  1.00     61.32
+  2.00     60.24
+  3.00     57.44
+  4.00     57.15
+  5.00     66.41
+  6.00     75.57
+  7.00     81.36
+  8.00     86.57
+  9.00     90.11
+ 10.00     98.39
+ 11.00    116.95
+ 12.00    136.54
+ 13.00    153.14
+ 14.00    167.85
+
+The pH of optimum stability is  3.6 for which the free energy is   56.3 kcal/mol at 298K
+Could not determine pH values where the free energy is within 80 % of minimum
+Could not determine the pH-range where the free energy is negative
+
+
+Protein charge of folded and unfolded state as a function of pH
+    pH  unfolded  folded
+  0.00     65.99   65.96
+  0.10     65.99   65.95
+  0.20     65.99   65.93
+  0.30     65.99   65.92
+  0.40     65.98   65.90
+  0.50     65.98   65.87
+  0.60     65.97   65.84
+  0.70     65.97   65.80
+  0.80     65.96   65.75
+  0.90     65.95   65.70
+  1.00     65.93   65.63
+  1.10     65.92   65.55
+  1.20     65.89   65.45
+  1.30     65.87   65.33
+  1.40     65.83   65.20
+  1.50     65.79   65.04
+  1.60     65.74   64.87
+  1.70     65.67   64.66
+  1.80     65.58   64.44
+  1.90     65.48   64.18
+  2.00     65.35   63.89
+  2.10     65.18   63.57
+  2.20     64.98   63.22
+  2.30     64.73   62.82
+  2.40     64.42   62.37
+  2.50     64.04   61.87
+  2.60     63.57   61.31
+  2.70     63.01   60.69
+  2.80     62.33   59.98
+  2.90     61.52   59.20
+  3.00     60.55   58.32
+  3.10     59.42   57.34
+  3.20     58.11   56.26
+  3.30     56.60   55.07
+  3.40     54.88   53.77
+  3.50     52.94   52.35
+  3.60     50.80   50.82
+  3.70     48.45   49.18
+  3.80     45.91   47.42
+  3.90     43.21   45.55
+  4.00     40.36   43.58
+  4.10     37.41   41.52
+  4.20     34.38   39.37
+  4.30     31.33   37.15
+  4.40     28.28   34.88
+  4.50     25.30   32.58
+  4.60     22.43   30.27
+  4.70     19.71   27.98
+  4.80     17.18   25.72
+  4.90     14.87   23.52
+  5.00     12.78   21.39
+  5.10     10.91   19.34
+  5.20      9.25   17.39
+  5.30      7.77   15.52
+  5.40      6.46   13.75
+  5.50      5.27   12.06
+  5.60      4.18   10.46
+  5.70      3.15    8.93
+  5.80      2.15    7.48
+  5.90      1.16    6.08
+  6.00      0.16    4.75
+  6.10     -0.86    3.47
+  6.20     -1.91    2.25
+  6.30     -2.99    1.09
+  6.40     -4.09   -0.03
+  6.50     -5.20   -1.08
+  6.60     -6.28   -2.09
+  6.70     -7.33   -3.04
+  6.80     -8.33   -3.94
+  6.90     -9.26   -4.81
+  7.00    -10.11   -5.63
+  7.10    -10.88   -6.43
+  7.20    -11.58   -7.20
+  7.30    -12.21   -7.94
+  7.40    -12.78   -8.67
+  7.50    -13.30   -9.38
+  7.60    -13.78  -10.07
+  7.70    -14.23  -10.74
+  7.80    -14.65  -11.40
+  7.90    -15.07  -12.02
+  8.00    -15.47  -12.63
+  8.10    -15.87  -13.20
+  8.20    -16.28  -13.74
+  8.30    -16.69  -14.25
+  8.40    -17.11  -14.72
+  8.50    -17.55  -15.17
+  8.60    -18.02  -15.59
+  8.70    -18.52  -15.99
+  8.80    -19.07  -16.37
+  8.90    -19.67  -16.74
+  9.00    -20.34  -17.11
+  9.10    -21.08  -17.49
+  9.20    -21.92  -17.88
+  9.30    -22.85  -18.31
+  9.40    -23.90  -18.76
+  9.50    -25.07  -19.27
+  9.60    -26.37  -19.83
+  9.70    -27.81  -20.46
+  9.80    -29.38  -21.17
+  9.90    -31.07  -21.95
+ 10.00    -32.87  -22.82
+ 10.10    -34.74  -23.77
+ 10.20    -36.66  -24.80
+ 10.30    -38.59  -25.91
+ 10.40    -40.50  -27.07
+ 10.50    -42.36  -28.27
+ 10.60    -44.14  -29.51
+ 10.70    -45.82  -30.77
+ 10.80    -47.38  -32.03
+ 10.90    -48.82  -33.29
+ 11.00    -50.14  -34.55
+ 11.10    -51.35  -35.81
+ 11.20    -52.47  -37.08
+ 11.30    -53.52  -38.36
+ 11.40    -54.53  -39.66
+ 11.50    -55.53  -41.00
+ 11.60    -56.54  -42.39
+ 11.70    -57.60  -43.83
+ 11.80    -58.73  -45.33
+ 11.90    -59.94  -46.89
+ 12.00    -61.26  -48.51
+ 12.10    -62.70  -50.18
+ 12.20    -64.23  -51.90
+ 12.30    -65.86  -53.65
+ 12.40    -67.55  -55.41
+ 12.50    -69.27  -57.15
+ 12.60    -70.98  -58.86
+ 12.70    -72.64  -60.52
+ 12.80    -74.20  -62.11
+ 12.90    -75.65  -63.60
+ 13.00    -76.96  -65.00
+ 13.10    -78.12  -66.29
+ 13.20    -79.13  -67.48
+ 13.30    -80.00  -68.57
+ 13.40    -80.73  -69.55
+ 13.50    -81.34  -70.44
+ 13.60    -81.85  -71.25
+ 13.70    -82.26  -71.97
+ 13.80    -82.60  -72.63
+ 13.90    -82.88  -73.23
+ 14.00    -83.10  -73.77
+The pI is  6.40 (folded) and  6.02 (unfolded)
+
+--------------------------------------------------------------------------------------------------------
+2026-08-16 04:23:50,362 INFO:biomolecule.py:794:apply_pka_values:Applying pKa values at a pH of 5.00:
+2026-08-16 04:23:50,367 INFO:main.py:658:non_trivial:Adding hydrogens to biomolecule.
+2026-08-16 04:23:50,718 INFO:main.py:661:non_trivial:Debumping biomolecule (again).
+2026-08-16 04:23:51,227 WARNING:debump.py:172:debump_biomolecule:WARNING: Unable to debump ALA B 227
+2026-08-16 04:23:51,268 WARNING:debump.py:172:debump_biomolecule:WARNING: Unable to debump GLU C 6
+2026-08-16 04:23:51,299 INFO:main.py:663:non_trivial:Optimizing hydrogen bonds
+2026-08-16 04:23:51,951 INFO:main.py:675:non_trivial:Applying force field to biomolecule states.
+2026-08-16 04:23:51,956 INFO:main.py:722:non_trivial:Regenerating headers.
+2026-08-16 04:23:51,957 INFO:main.py:747:non_trivial:Regenerating PDB lines.
+2026-08-16 04:23:51,983 WARNING:main.py:320:print_pqr:Ignoring 466 header lines in output.
+2026-08-16 04:23:52,013 WARNING:main.py:363:print_pdb:Ignoring 466 header lines in output.
