@@ -20,5 +20,14 @@
   - Global energy (total potential energy & isolated energy)
   - Residual atomic forces (local structural strain)
 
+6 - Residue-Level Physics `06_residue_physics.py`
+  - Atom-level properties into residual features (total/average charge, force magnitude etc.).
+
+7 - Residue-Level Physics Visualization `06_visualize_residue_physics.py`
+  - Map physical features back onto the protein structure for inspection
+
+8 - Electrostatic Potential Mapping `08_run_apbs.py`
+  - Generate a 3D electrostatic potential field using `APBS` Poisson-Boltzmann (maps long-range charge interactions)
+
 Pilot tests whether physically-informed protonation and molecular mechanics provide useful
 electrostatic representations that can complement Gpmhc representation as a tensor overlap (node feature fusion and edge feature inclusion). 
