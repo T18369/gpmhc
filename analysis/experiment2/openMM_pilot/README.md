@@ -3,7 +3,7 @@
 
 ### Workflow: ###
 1 - Protonation & Environment Initialization `01_protonate.py`
-  - `PDB2PQR` `PROPKA` protonation at pH 5.0 (AF2m does not model H+ bonds & pMHC binds in endosome)
+  - `PROPKA` protonation at pH 5.0 (AF2m does not model H+ bonds & pMHC binds in endosome). `PDB2PQR` resolves missing terminal oxygen atom warnings. Check for any missing contacts in backbone.
 
 2 - Geometric & Solvent Surface Profiling `02_sasa.py`
   - `FreeSASA` `MDTraj` to calculate solvent-accessible surface area (SASA)
