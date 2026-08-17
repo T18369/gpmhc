@@ -1,0 +1,2 @@
+Structure: analysis/experiment2/openmm_pilot/analysis/DQ25_DQA1-05-05_DQB1-03-01_DVQDDEEREL/protonated/DQ25_DQA1-05-05_DQB1-03-01_DVQDDEEREL_protonated.pdb
+Total SASA (A^2): 29204.961
