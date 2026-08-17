@@ -3,8 +3,17 @@ An extension of the Graph-pMHC GNN, used to evaluate the model and explore exten
 
 Initial work focused on evaluating prediction quality beyond aggregate AP by granularizing performance across allele classes and allotypes. Decreases in accuracy are structured rather than random, concentrated in specific DQ allotypes, independent of training coverage, and associated with structural isolation. (see analysis folder)
 
-Ongoing work explores whether additional biochemical/structural information can complement the original graph representation.
-(see training folder)
+<p align="center">
+  <img src="analysis/experiment2/openMM_pilot/analysis/DQ25_DQA1-05-05_DQB1-03-01_DVQDDEEREL/visualization/DQ25_DVQDDEEREL_mean_force_topdown.png" width="500">
+</p>
+<p align="center">
+  <sub>
+    <em>Apical view of Class II DQ2.5 binding DVQDDEEREL. Sticks represent peptide sequence.
+      Color represents mean force magnitude (Red-Blue : Strongest-Weakest). See analysis/experiment2/openMM_pilot
+    </em>
+</p>
+
+Ongoing work explores whether additional biochemical/structural information can complement the original graph representation. (see training folder)
 
 The aim is to develop a richer representation of the pMHC interface while retaining the strengths of the original model. Longer-term, this provides a foundation for extending pMHC modeling toward integrating TCR recognition.
 
