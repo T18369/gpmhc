@@ -49,7 +49,8 @@ python3 analysis/experiment2/openmm_pilot/07_visualize_residue_physics.py \
 
 echo "8. APBS electrostatics"
 python3 analysis/experiment2/openmm_pilot/08_run_apbs.py \
-    --pdb "$BASE/visualization/DQ25_mean_force_map.pdb" \
+    --pdb "$BASE/minimized/${NAME}_solvated_minimized.pdb" \
     --output-dir "$BASE/apbs"
+
 
 echo "OpenMM pilot complete: $BASE"
